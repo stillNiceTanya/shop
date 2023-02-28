@@ -1,0 +1,33 @@
+import { Route, Routes } from "react-router-dom";
+
+import Home from "./pages/Home";
+import Catalog from "./pages/Catalog";
+import ErrorPage from "./pages/ErrorPage";
+import Product from "./pages/Product";
+
+const App = () => {
+  return (
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={<Home />}
+        />
+        <Route
+          path="/catalog"
+          element={<Catalog />}
+        />
+        <Route
+          path="/errorPage"
+          element={<ErrorPage />}
+        />
+        <Route
+          path="/product"
+          element={<Product />}
+        />
+      </Routes>
+    </>
+  );
+};
+
+export default App;
