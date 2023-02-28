@@ -4,7 +4,6 @@ import { allProductsReducer } from "./allProducts";
 import { filtersReducer } from "./filters";
 import { categoryReducer } from "./category";
 import { limitProductsReducer } from "./limitProducts";
-import { getMinFilterPriceReducer } from "./minFilterPrice";
 import { boolensReducer } from "./boolens";
 
 const rootReducer = combineReducers({
@@ -12,7 +11,6 @@ const rootReducer = combineReducers({
   limitProducts: limitProductsReducer,
   category: categoryReducer,
   filters: filtersReducer,
-  minFilterPrice: getMinFilterPriceReducer,
   boolens: boolensReducer,
 });
 
