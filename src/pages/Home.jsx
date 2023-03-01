@@ -21,7 +21,7 @@ export default function Home() {
       <div className="flex justify-between self-center mb-10 font-medium">
         <h2 className="text-4xl">Shop The Latest</h2>
         <Link
-          to="/Catalog"
+          to="/catalog"
           className="text-accent-100 text-xl"
         >
           View All

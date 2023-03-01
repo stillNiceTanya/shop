@@ -13,5 +13,3 @@ export const SET_FILTER = "SET_FILTER";
 
 export const SET_MIN_FILTER_PRICE = "SET_MIN_FILTER_PRICE";
 export const SET_MAX_FILTER_PRICE = "SET_MAX_FILTER_PRICE";
-
-export const SET_BOOLEN = "SET_BOOLEN";

@@ -7,7 +7,6 @@ import "rc-slider/assets/index.css";
 import { setFilter } from "../redux/actions/setFilter";
 import Select from "./Select";
 import InputSearch from "./InputSearch";
-import { setBoolen } from "../redux/actions/setBoolen";
 
 export default function Filters({ products }) {
   const dispatch = useDispatch();
@@ -52,10 +51,6 @@ export default function Filters({ products }) {
     dispatch(setFilter({ minPrice: values[0] }));
     dispatch(setFilter({ maxPrice: values[1] }));
   };
-  let isDisabled = false;
-  const handleClick = () => {
-    dispatch(setBoolen({ priceFilter: true }));
-  };
 
   return (
     <form className="flex flex-col mr-9 gap-9">
@@ -70,8 +65,6 @@ export default function Filters({ products }) {
       <Select
         onChange={handleFilterCategoryChange}
         options={categories}
-        onClick={handleClick}
-        isDisabled={isDisabled}
       />
 
       <div>
