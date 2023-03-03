@@ -2,19 +2,28 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLimitProducts } from "../redux/actions/getLimitProducts";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 import Items from "../components/Items/Items";
 
 export default function Home() {
   const dispatch = useDispatch();
 
-  const limitProducts = useSelector((state) => state.limitProducts);
-
   useEffect(() => {
     dispatch(getLimitProducts({ limit: 6 }));
     return;
   }, []);
+
+  const limitProducts = useSelector((state) => state.limitProducts.data);
+  const isLoaded = useSelector((state) => state.limitProducts.isLoaded);
+
+  if (!isLoaded) {
+    return <div>loading...</div>;
+  }
+
+  if (isLoaded && !limitProducts) {
+    return <Navigate to={"/error-page"} />;
+  }
 
   return (
     <div className="mt-16 ml-44 mr-6">
@@ -31,7 +40,7 @@ export default function Home() {
       <div className="">
         <Items
           classNameOfItems="gap-x-14 gap-y-20"
-          props={limitProducts}
+          product={limitProducts}
         />
       </div>
     </div>

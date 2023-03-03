@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Catalog from "./pages/Catalog";
@@ -11,7 +11,12 @@ const App = () => {
       <Routes>
         <Route
           path="*"
-          element={<ErrorPage />}
+          element={
+            <Navigate
+              to="/error-page"
+              // replace
+            />
+          }
         />
         <Route
           path="/"

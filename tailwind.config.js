@@ -12,12 +12,13 @@ module.exports = {
         dmSans: ["DM Sans", "sans-serif"],
       },
       height: {
-        600: "37.5rem",
         120: "7.5rem",
+        600: "37.5rem",
       },
       width: {
-        540: "33.75rem",
         120: "7.5rem",
+        484: "30.25rem",
+        540: "33.75rem",
       },
     },
   },

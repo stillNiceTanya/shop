@@ -12,7 +12,10 @@ export default function Filters({ products }) {
   const dispatch = useDispatch();
 
   const categories = useSelector((state) => state.category);
-  const prices = useSelector((state) => state.products.map((el) => el.price));
+  const prices = useSelector((state) =>
+    state.products.data.map((el) => el.price)
+  );
+
   const searchString = useSelector((state) => state.filters.search);
   const minPrice = useSelector((state) => state.filters.minPrice);
   const maxPrice = useSelector((state) => state.filters.maxPrice);

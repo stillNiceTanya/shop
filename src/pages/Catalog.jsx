@@ -20,6 +20,7 @@ import Filters from "../components/Filters";
 // ----------------------------------------
 
 // контейнер для картинок
+
 // фильтр по рейтингу(не обяз)
 //вынести api запросы в отдельные модули(создать в папке src папку апи и там сделать модули)
 
@@ -30,7 +31,8 @@ export default function Catalog() {
   const maxPrice = useSelector((state) => state.filters.maxPrice);
 
   const products = useSelector((state) => {
-    let filteredProducts = state.products;
+    let filteredProducts = state.products.data;
+
     const currentChoosenCategory = state.filters.category;
     const currentSearch = state.filters.search;
 
@@ -72,7 +74,7 @@ export default function Catalog() {
           <Filters products={products} />
 
           <Items
-            props={products}
+            product={products}
             classNameOfItems="gap-x-6 gap-y-40"
           />
         </div>

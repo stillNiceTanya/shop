@@ -1,29 +1,45 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate, useNavigate } from "react-router-dom";
 
 import { getProducts } from "../redux/actions/getProducts";
 import Gallery from "../components/Gallery";
+import ProductCard from "../components/ProductCard";
 
 export default function Product() {
-  const { id } = useParams();
-
-  const dispatch = useDispatch();
-
-  const product = useSelector((state) => {
-    let result = state.products;
-    let numberId = Number(id);
-
-    return result
-      .filter((item) => item.id === numberId)
-      .map((item) => item.image)
-      .join();
-  });
+  //   const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getProducts({}));
   }, []);
+
+  const { id } = useParams();
+
+  const dispatch = useDispatch();
+
+  const isLoaded = useSelector((state) => state.products.isLoaded);
+
+  const product = useSelector((state) => {
+    let productId = Number(id);
+    if (Number.isNaN(productId)) {
+      return null;
+    }
+
+    let result = state.products.data;
+
+    return result.find((item) => item.id === productId);
+  });
+
+  if (!isLoaded) {
+    return (
+      <div className="flex justify-center items-center h-screen">loading</div>
+    );
+  }
+
+  if (isLoaded && !product) {
+    return <Navigate to="/error-page" />;
+  }
 
   return (
     <div className="flex justify-between my-32 mx-24 ">
@@ -31,25 +47,25 @@ export default function Product() {
         <div className="flex flex-col gap-10">
           {
             <Gallery
-              item={product}
+              item={product.image}
               className={"h-120 w-120 object-contain"}
             />
           }
           {
             <Gallery
-              item={product}
+              item={product.image}
               className={"h-120 w-120 object-contain"}
             />
           }
           {
             <Gallery
-              item={product}
+              item={product.image}
               className={"h-120 w-120 object-contain"}
             />
           }
           {
             <Gallery
-              item={product}
+              item={product.image}
               className={"h-120 w-120 object-contain"}
             />
           }
@@ -57,13 +73,15 @@ export default function Product() {
         <>
           {
             <Gallery
-              item={product}
+              item={product.image}
               className={"object-contain h-600 w-540"}
             />
           }
         </>
       </div>
-      <div>id - {` ${+id}`}</div>
+      <>
+        <ProductCard product={product} />
+      </>
     </div>
   );
 }
