@@ -5,7 +5,7 @@ export default function GalleryProduct({ imageSrc, className }) {
     <img
       src={imageSrc}
       alt="product img"
-      className={className}
+      className={` object-contain ${className}`}
     ></img>
   );
 }

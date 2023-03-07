@@ -47,28 +47,28 @@ export default function Product() {
         <div className="flex flex-col gap-10">
           <GalleryProduct
             imageSrc={product.image}
-            className={"h-120 w-120 object-contain"}
+            className={"h-120 w-120 "}
           />
 
           <GalleryProduct
             imageSrc={product.image}
-            className={"h-120 w-120 object-contain"}
+            className={"h-120 w-120 "}
           />
 
           <GalleryProduct
             imageSrc={product.image}
-            className={"h-120 w-120 object-contain"}
+            className={"h-120 w-120 "}
           />
 
           <GalleryProduct
             imageSrc={product.image}
-            className={"h-120 w-120 object-contain "}
+            className={"h-120 w-120  "}
           />
         </div>
 
         <GalleryProduct
           imageSrc={product.image}
-          className={"object-contain h-600 w-540"}
+          className={" h-600 w-540"}
         />
       </div>
 
