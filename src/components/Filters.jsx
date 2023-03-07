@@ -3,17 +3,24 @@ import { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import { debounce } from "throttle-debounce";
 
 import { setFilter } from "../redux/actions/setFilter";
+import { resetFilters } from "../redux/actions/resetFilters";
 import Select from "./Select";
 import InputSearch from "./InputSearch";
-import { setBoolen } from "../redux/actions/setBoolen";
 
 export default function Filters({ products }) {
   const dispatch = useDispatch();
 
-  const categories = useSelector((state) => state.category);
-  const prices = useSelector((state) => state.products.map((el) => el.price));
+  useEffect(() => {
+    return () => dispatch(resetFilters());
+  }, []);
+
+  const allCategories = useSelector((state) => state.allCategories);
+  const prices = useSelector((state) =>
+    state.products.data.map((el) => el.price)
+  );
   const searchString = useSelector((state) => state.filters.search);
   const minPrice = useSelector((state) => state.filters.minPrice);
   const maxPrice = useSelector((state) => state.filters.maxPrice);
@@ -28,12 +35,12 @@ export default function Filters({ products }) {
     [prices]
   );
 
-  const defoultPriceFilter = [minProductPrice, maxProductPrice];
+  const defaultPriceFilter = [minProductPrice, maxProductPrice];
 
-  useEffect(() => {
-    return () =>
-      dispatch(setFilter({ category: undefined, search: undefined }));
-  }, []);
+  const isEmptyCatalog = useMemo(
+    () => searchString && products.length === 0,
+    [searchString, products]
+  );
 
   const handleFilterCategoryChange = (event) => {
     dispatch(setFilter({ category: event.target.value }));
@@ -43,19 +50,14 @@ export default function Filters({ products }) {
     dispatch(setFilter({ search: event.target.value }));
   };
 
-  const isEmptyCatalog = useMemo(
-    () => searchString && products.length === 0,
-    [searchString, products]
-  );
+  const debounceSearch = debounce(500, handleInputSearch);
 
-  const handleFilerPriceChange = (values) => {
+  function handleFilerPriceChange(values) {
     dispatch(setFilter({ minPrice: values[0] }));
     dispatch(setFilter({ maxPrice: values[1] }));
-  };
-  let isDisabled = false;
-  const handleClick = () => {
-    dispatch(setBoolen({ priceFilter: true }));
-  };
+  }
+
+  const debounceChange = debounce(500, handleFilerPriceChange);
 
   return (
     <form className="flex flex-col mr-9 gap-9">
@@ -64,14 +66,12 @@ export default function Filters({ products }) {
         <span>
           {isEmptyCatalog ? "try another search" : "what're you looking for?"}
         </span>
-        <InputSearch onChange={handleInputSearch} />
+        <InputSearch onChange={debounceSearch} />
       </div>
 
       <Select
         onChange={handleFilterCategoryChange}
-        options={categories}
-        onClick={handleClick}
-        isDisabled={isDisabled}
+        options={allCategories}
       />
 
       <div>
@@ -79,8 +79,8 @@ export default function Filters({ products }) {
           range
           min={minProductPrice}
           max={maxProductPrice}
-          onChange={handleFilerPriceChange}
-          defaultValue={defoultPriceFilter}
+          onChange={debounceChange}
+          defaultValue={defaultPriceFilter}
           trackStyle={{ backgroundColor: "#D8D8D8" }}
           handleStyle={{
             borderColor: "#707070",

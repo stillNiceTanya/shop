@@ -1,4 +1,5 @@
 import { SET_FILTER } from "../actionTypes";
+import { RESET_FILTERS } from "../actionTypes";
 
 const initialState = {};
 
@@ -9,6 +10,9 @@ export const filtersReducer = (state = initialState, action) => {
         ...state,
         ...action.data,
       };
+    }
+    case RESET_FILTERS: {
+      return {};
     }
 
     default:

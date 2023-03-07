@@ -11,6 +11,15 @@ module.exports = {
       fontFamily: {
         dmSans: ["DM Sans", "sans-serif"],
       },
+      height: {
+        120: "7.5rem",
+        600: "37.5rem",
+      },
+      width: {
+        120: "7.5rem",
+        484: "30.25rem",
+        540: "33.75rem",
+      },
     },
   },
   plugins: [],

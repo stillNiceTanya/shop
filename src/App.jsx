@@ -10,6 +10,10 @@ const App = () => {
     <>
       <Routes>
         <Route
+          path="*"
+          element={<ErrorPage />}
+        />
+        <Route
           path="/"
           element={<Home />}
         />
@@ -17,12 +21,9 @@ const App = () => {
           path="/catalog"
           element={<Catalog />}
         />
+
         <Route
-          path="/errorPage"
-          element={<ErrorPage />}
-        />
-        <Route
-          path="/product"
+          path="/product/:id"
           element={<Product />}
         />
       </Routes>
