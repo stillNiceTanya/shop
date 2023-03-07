@@ -6,6 +6,7 @@ import "rc-slider/assets/index.css";
 import { debounce } from "throttle-debounce";
 
 import { setFilter } from "../redux/actions/setFilter";
+import { resetFilters } from "../redux/actions/resetFilters";
 import Select from "./Select";
 import InputSearch from "./InputSearch";
 
@@ -13,8 +14,7 @@ export default function Filters({ products }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    return () =>
-      dispatch(setFilter({ category: undefined, search: undefined }));
+    return () => dispatch(resetFilters());
   }, []);
 
   const categories = useSelector((state) => state.category);
@@ -35,7 +35,7 @@ export default function Filters({ products }) {
     [prices]
   );
 
-  const defoultPriceFilter = [minProductPrice, maxProductPrice];
+  const defaultPriceFilter = [minProductPrice, maxProductPrice];
 
   const isEmptyCatalog = useMemo(
     () => searchString && products.length === 0,
@@ -80,7 +80,7 @@ export default function Filters({ products }) {
           min={minProductPrice}
           max={maxProductPrice}
           onChange={debounceChange}
-          defaultValue={defoultPriceFilter}
+          defaultValue={defaultPriceFilter}
           trackStyle={{ backgroundColor: "#D8D8D8" }}
           handleStyle={{
             borderColor: "#707070",

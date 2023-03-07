@@ -2,9 +2,9 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLimitProducts } from "../redux/actions/getLimitProducts";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import Items from "../components/Items/Items";
+import Items from "../components/Items";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -19,10 +19,6 @@ export default function Home() {
 
   if (!isLoaded) {
     return <div>loading...</div>;
-  }
-
-  if (isLoaded && !limitProducts) {
-    return <Navigate to={"/error-page"} />;
   }
 
   return (
@@ -40,7 +36,7 @@ export default function Home() {
       <div className="">
         <Items
           classNameOfItems="gap-x-14 gap-y-20"
-          product={limitProducts}
+          products={limitProducts}
         />
       </div>
     </div>

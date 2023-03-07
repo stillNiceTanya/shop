@@ -1,16 +1,14 @@
 import React from "react";
 import { useState } from "react";
 
-import Button from "./Button";
-
 export default function ProductCard({ product }) {
   const [count, setCount] = useState(0);
 
   return (
     <div className="flex flex-col w-484">
       <>
-        <span className="font-normal mb-6 leading-9 text-2xl">
-          {product.title.slice(0, 20)}
+        <span className="font-normal mb-6 leading-9 text-2xl text-ellipsis whitespace-nowrap overflow-hidden">
+          {product.title}
         </span>
         <span className="font-medium text-accent-100 mb-16 leading-6 text-xl	">
           ${product.price}
@@ -21,26 +19,28 @@ export default function ProductCard({ product }) {
       </span>
       <div className="flex justify-between">
         <div>
-          <span
-            className="cursor-pointer mr-4"
+          <button
+            className=" mr-4"
             onClick={() => setCount(count <= 0 ? 0 : count - 1)}
           >
             -
-          </span>
+          </button>
 
           <span>{count}</span>
-          <span
+          <button
             className="cursor-pointer ml-4"
             onClick={() => setCount(count + 1)}
           >
             +
-          </span>
+          </button>
         </div>
-        <Button
-          onClick={() => console.log(`${count} ${product.title} added to card`)}
+        <button
+          onClick={() =>
+            alert(`${count} '${product.title.slice(0, 15)}' added to card`)
+          }
         >
           ADD TO CART
-        </Button>
+        </button>
       </div>
     </div>
   );

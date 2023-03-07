@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { getProductsCategories } from "../redux/actions/getProductsCategories";
 import { getProducts } from "../redux/actions/getProducts";
 
-import Items from "../components/Items/Items";
+import Items from "../components/Items";
 import Filters from "../components/Filters";
 
 //DONE ссылки маршрутиз реакт роутер
@@ -74,7 +74,7 @@ export default function Catalog() {
           <Filters products={products} />
 
           <Items
-            product={products}
+            products={products}
             classNameOfItems="gap-x-6 gap-y-40"
           />
         </div>

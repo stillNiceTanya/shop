@@ -11,8 +11,8 @@ export default function Item({ item }) {
           className="items-center object-cover w-auto"
         />
       </div>
-      <span className="font-normal mb-4 leading-6">
-        {item.title.slice(0, 20)}
+      <span className="font-normal mb-4 leading-6 text-ellipsis whitespace-nowrap overflow-hidden">
+        {item.title}
       </span>
       <span className="font-medium text-accent-100 leading-6">
         ${item.price}

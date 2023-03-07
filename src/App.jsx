@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Catalog from "./pages/Catalog";
@@ -11,12 +11,7 @@ const App = () => {
       <Routes>
         <Route
           path="*"
-          element={
-            <Navigate
-              to="/error-page"
-              // replace
-            />
-          }
+          element={<ErrorPage />}
         />
         <Route
           path="/"
@@ -26,10 +21,7 @@ const App = () => {
           path="/catalog"
           element={<Catalog />}
         />
-        <Route
-          path="/error-page"
-          element={<ErrorPage />}
-        />
+
         <Route
           path="/product/:id"
           element={<Product />}

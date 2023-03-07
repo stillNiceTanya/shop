@@ -1,9 +1,7 @@
 import React from "react";
-// import { useRouteError } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export default function ErrorPage() {
-  //   const error = useRouteError();
   return (
     <div className="flex flex-col justify-center items-center h-screen">
       <h2 className="text-4xl font-medium ">404 ERROR</h2>
