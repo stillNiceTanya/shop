@@ -17,7 +17,7 @@ export default function Filters({ products }) {
     return () => dispatch(resetFilters());
   }, []);
 
-  const categories = useSelector((state) => state.category);
+  const allCategories = useSelector((state) => state.allCategories);
   const prices = useSelector((state) =>
     state.products.data.map((el) => el.price)
   );
@@ -71,7 +71,7 @@ export default function Filters({ products }) {
 
       <Select
         onChange={handleFilterCategoryChange}
-        options={categories}
+        options={allCategories}
       />
 
       <div>
