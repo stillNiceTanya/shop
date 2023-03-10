@@ -1,14 +1,14 @@
-import React from "react";
-import { useEffect, useMemo } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
-import { debounce } from "throttle-debounce";
+import React from 'react';
+import { useEffect, useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import { debounce } from 'throttle-debounce';
 
-import { setFilter } from "../redux/actions/setFilter";
-import { resetFilters } from "../redux/actions/resetFilters";
-import Select from "./Select";
-import InputSearch from "./InputSearch";
+import { setFilter } from '../redux/actions/setFilter';
+import { resetFilters } from '../redux/actions/resetFilters';
+import Select from './Select';
+import InputSearch from './InputSearch';
 
 export default function Filters({ products }) {
   const dispatch = useDispatch();
@@ -19,28 +19,23 @@ export default function Filters({ products }) {
 
   const allCategories = useSelector((state) => state.allCategories);
   const prices = useSelector((state) =>
-    state.products.data.map((el) => el.price)
+    state.products.data.map((el) => el.price),
   );
-  const searchString = useSelector((state) => state.filters.search);
+
   const minPrice = useSelector((state) => state.filters.minPrice);
   const maxPrice = useSelector((state) => state.filters.maxPrice);
 
   const minProductPrice = useMemo(
     () => Math.floor(Math.min(...prices)),
-    [prices]
+    [prices],
   );
 
   const maxProductPrice = useMemo(
     () => Math.ceil(Math.max(...prices)),
-    [prices]
+    [prices],
   );
 
   const defaultPriceFilter = [minProductPrice, maxProductPrice];
-
-  const isEmptyCatalog = useMemo(
-    () => searchString && products.length === 0,
-    [searchString, products]
-  );
 
   const handleFilterCategoryChange = (event) => {
     dispatch(setFilter({ category: event.target.value }));
@@ -61,18 +56,11 @@ export default function Filters({ products }) {
 
   return (
     <form className="flex flex-col mr-9 gap-9">
-      {/* убрать марджин и я вставила не по макету validationSearchError подравнять красиво */}
       <div>
-        <span>
-          {isEmptyCatalog ? "try another search" : "what're you looking for?"}
-        </span>
         <InputSearch onChange={debounceSearch} />
       </div>
 
-      <Select
-        onChange={handleFilterCategoryChange}
-        options={allCategories}
-      />
+      <Select onChange={handleFilterCategoryChange} options={allCategories} />
 
       <div>
         <Slider
@@ -81,9 +69,9 @@ export default function Filters({ products }) {
           max={maxProductPrice}
           onChange={debounceChange}
           defaultValue={defaultPriceFilter}
-          trackStyle={{ backgroundColor: "#D8D8D8" }}
+          trackStyle={{ backgroundColor: '#D8D8D8' }}
           handleStyle={{
-            borderColor: "#707070",
+            borderColor: '#707070',
             width: 1,
           }}
         />
@@ -103,10 +91,7 @@ export default function Filters({ products }) {
 
       <label className="switch">
         In stock
-        <input
-          type="checkbox"
-          // checked
-        />
+        <input type="checkbox" />
       </label>
     </form>
   );

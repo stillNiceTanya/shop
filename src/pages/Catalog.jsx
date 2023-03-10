@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -49,6 +49,13 @@ export default function Catalog() {
     dispatch(getProducts({}));
   }, []);
 
+  const isLoaded = useSelector((state) => state.products.isLoaded);
+
+  const isEmptyCatalog = useMemo(
+    () => isLoaded && products.length === 0,
+    [isLoaded, products],
+  );
+
   return (
     <>
       <div className="lg:px-24 lg:pt-24 p-4 mobile:p-10">
@@ -64,10 +71,16 @@ export default function Catalog() {
           <div className="hidden md:block">
             <Filters products={products} />
           </div>
-          <Items
-            products={products}
-            className="md:gap-x-6 lg:gap-y-40 lg:gap-x-14 mobile:gap-x-3.5 mobile:gap-y-7 flex-1"
-          />
+          {isEmptyCatalog ? (
+            <span className="ml-24 text-xl text-accent-100">
+              please,try another search, there is no match
+            </span>
+          ) : (
+            <Items
+              products={products}
+              className="md:gap-x-6 lg:gap-y-40 lg:gap-x-14 mobile:gap-x-3.5 mobile:gap-y-7 flex-1"
+            />
+          )}
         </div>
       </div>
     </>
