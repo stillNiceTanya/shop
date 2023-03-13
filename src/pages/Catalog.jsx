@@ -1,28 +1,15 @@
-import React from "react";
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useEffect, useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { getProductsCategories } from "../redux/actions/getProductsCategories";
-import { getProducts } from "../redux/actions/getProducts";
+import { getProductsCategories } from '../redux/actions/getProductsCategories';
+import { getProducts } from '../redux/actions/getProducts';
 
-import Items from "../components/Items";
-import Filters from "../components/Filters";
+import Items from '../components/Items';
+import Filters from '../components/Filters';
 
-//DONE ссылки маршрутиз реакт роутер
-// разделить получение данных для главной стр и каталога
-// фильтры по катергориям
-// фильтр поиска по названию
-// фильтр по цене от 0 до 1000
-// проверить все кейсы по фильтру
-// вынести отдельные компоненты
-// когда в options defoult - сделать что его невозможно выбрать пользователю, а то при перевыборе на него не отображаются товары в корзине, ведь он не соответствует категории
-// ----------------------------------------
-
-// контейнер для картинок
-
-// фильтр по рейтингу(не обяз)
-//вынести api запросы в отдельные модули(создать в папке src папку апи и там сделать модули)
+//вынести отдельно фильтры, чтобы можно было в моб версии делать фильтр согласно макету в Каталог и Home
 
 export default function Catalog() {
   const dispatch = useDispatch();
@@ -38,19 +25,19 @@ export default function Catalog() {
 
     if (currentChoosenCategory) {
       filteredProducts = filteredProducts.filter(
-        (item) => item.category === state.filters.category
+        (item) => item.category === state.filters.category,
       );
     }
 
     if (currentSearch) {
       filteredProducts = filteredProducts.filter((item) =>
-        item.title.toLowerCase().includes(currentSearch.toLowerCase())
+        item.title.toLowerCase().includes(currentSearch.toLowerCase()),
       );
     }
 
     if (minPrice && maxPrice) {
       filteredProducts = filteredProducts.filter(
-        (item) => item.price >= minPrice && item.price <= maxPrice
+        (item) => item.price >= minPrice && item.price <= maxPrice,
       );
     }
 
@@ -62,21 +49,38 @@ export default function Catalog() {
     dispatch(getProducts({}));
   }, []);
 
+  const isLoaded = useSelector((state) => state.products.isLoaded);
+
+  const isEmptyCatalog = useMemo(
+    () => isLoaded && products.length === 0,
+    [isLoaded, products],
+  );
+
   return (
     <>
-      <div className="mx-24 mt-24">
+      <div className="lg:px-24 lg:pt-24 p-4 mobile:p-10">
         <Link to="/">
           Вернуться на предыдущую страницу {<br />}
-          <h2 className="text-3xl font-medium">Shop The Latest</h2>
+          <span className="text-3xl font-medium lg:hidden">Shop</span>
+          <h2 className="lg:text-3xl lg:font-medium lg:block hidden ">
+            Shop The Latest
+          </h2>
         </Link>
 
-        <div className="flex items-start pt-10">
-          <Filters products={products} />
-
-          <Items
-            products={products}
-            classNameOfItems="gap-x-6 gap-y-40"
-          />
+        <div className="md:flex md:items-start lg:pt-10 pt-4">
+          <div className="hidden md:block">
+            <Filters products={products} />
+          </div>
+          {isEmptyCatalog ? (
+            <span className="ml-24 text-xl text-accent-100">
+              please,try another search, there is no match
+            </span>
+          ) : (
+            <Items
+              products={products}
+              className="md:gap-x-6 lg:gap-y-40 lg:gap-x-14 mobile:gap-x-3.5 mobile:gap-y-7 flex-1"
+            />
+          )}
         </div>
       </div>
     </>

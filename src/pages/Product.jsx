@@ -1,15 +1,13 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useParams, Navigate } from 'react-router-dom';
 
-import { getProducts } from "../redux/actions/getProducts";
-import GalleryProduct from "../components/GalleryProduct";
-import ProductCard from "../components/ProductCard";
+import { getProducts } from '../redux/actions/getProducts';
+import GalleryProduct from '../components/GalleryProduct';
+import ProductCard from '../components/ProductCard';
 
 export default function Product() {
-  //   const navigate = useNavigate();
-
   useEffect(() => {
     dispatch(getProducts({}));
   }, []);
@@ -42,33 +40,21 @@ export default function Product() {
   }
 
   return (
-    <div className="flex justify-between my-32 mx-24 ">
-      <div className="flex justify-between gap-10">
-        <div className="flex flex-col gap-10">
-          <GalleryProduct
-            imageSrc={product.image}
-            className={"h-120 w-120 "}
-          />
+    <div className="p-4 w-screen smalltablet:px-14 md:flex md:justify-between md:py-24 gap-10">
+      <div className="lg:flex lg:justify-between lg:gap-10">
+        <div className="flex flex-col gap-10 hidden lg:block">
+          <GalleryProduct imageSrc={product.image} className="h-120 w-120" />
 
-          <GalleryProduct
-            imageSrc={product.image}
-            className={"h-120 w-120 "}
-          />
+          <GalleryProduct imageSrc={product.image} className="h-120 w-120" />
 
-          <GalleryProduct
-            imageSrc={product.image}
-            className={"h-120 w-120 "}
-          />
+          <GalleryProduct imageSrc={product.image} className="h-120 w-120" />
 
-          <GalleryProduct
-            imageSrc={product.image}
-            className={"h-120 w-120  "}
-          />
+          <GalleryProduct imageSrc={product.image} className="h-120 w-120" />
         </div>
 
         <GalleryProduct
           imageSrc={product.image}
-          className={" h-600 w-540"}
+          className="w-auto mobile:w-2/3 mx-auto smalltablet:w-1/2 bigtablet:w-2/3 lg:max-h-600 lg:max-w-540 md:w-auto"
         />
       </div>
 
@@ -76,3 +62,7 @@ export default function Product() {
     </div>
   );
 }
+
+//px-24 - 96px
+//32 -128px
+//smalltablet:bg-pink-900
