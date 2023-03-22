@@ -20,7 +20,7 @@ export default function Home() {
   }
 
   return (
-    <div className="md:mt-16 lg:ml-44 md:mr-6 m-4 mobile:m-10">
+    <div className="md:pt-16 lg:pl-30 md:pr-6 p-4 mobile:p-10">
       <div className="flex justify-between self-center mb-10 font-medium">
         <h2 className="md:text-4xl text-xl">Shop The Latest</h2>
         <Link

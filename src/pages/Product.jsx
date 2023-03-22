@@ -42,7 +42,7 @@ export default function Product() {
   return (
     <div className="p-4 w-screen smalltablet:px-14 md:flex md:justify-between md:py-24 gap-10">
       <div className="lg:flex lg:justify-between lg:gap-10">
-        <div className="flex flex-col gap-10 hidden lg:block">
+        <div className="lg:flex lg:flex-col lg:gap-10 hidden lg:block">
           <GalleryProduct imageSrc={product.image} className="h-120 w-120" />
 
           <GalleryProduct imageSrc={product.image} className="h-120 w-120" />
@@ -54,15 +54,11 @@ export default function Product() {
 
         <GalleryProduct
           imageSrc={product.image}
-          className="w-auto mobile:w-2/3 mx-auto smalltablet:w-1/2 bigtablet:w-2/3 lg:max-h-600 lg:max-w-540 md:w-auto"
+          className="w-auto mx-auto mobile:w-2/3 smalltablet:w-1/2 md:w-2/3 bigtablet:w-2/3 lg:max-h-600 lg:max-w-540 "
         />
       </div>
 
-      <ProductCard product={product} />
+      <ProductCard product={product} className="shrink" />
     </div>
   );
 }
-
-//px-24 - 96px
-//32 -128px
-//smalltablet:bg-pink-900
