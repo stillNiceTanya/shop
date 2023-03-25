@@ -5,7 +5,7 @@ import { useParams, Navigate } from 'react-router-dom';
 
 import { getProducts } from '../redux/actions/getProducts';
 import GalleryProduct from '../components/GalleryProduct';
-import ProductCard from '../components/ProductCard';
+import ProductCard from '../components/ProductCard/ProductCard';
 
 export default function Product() {
   useEffect(() => {
