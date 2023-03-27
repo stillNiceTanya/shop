@@ -39,11 +39,11 @@ export default function AddToCartContainer({ product }) {
   const handleDecrement = useCallback(() => {
     if (count === 1) return;
 
-    setCount(count - 1);
+    setCount((currentCount) => currentCount - 1);
   }, [count]);
 
   const handleIncrement = useCallback(() => {
-    setCount(count + 1);
+    setCount((currentCount) => currentCount + 1);
   }, [count]);
 
   const handleInputChange = (event) => {
