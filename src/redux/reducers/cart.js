@@ -1,16 +1,23 @@
-import { ADD_PRODUCT_TO_CART, UPDATE_PRODUCT_IN_CART } from '../actionTypes';
+import {
+  ADD_PRODUCT_TO_CART,
+  UPDATE_PRODUCT_IN_CART,
+  SET_INITIAL_CART,
+} from '../actionTypes';
 
-const initialState = [];
+const initialState = { isLoaded: false, data: [] };
 
 export const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRODUCT_TO_CART: {
-      return [...state, action.data];
+      return {
+        ...state,
+        data: [...state.data, action.data],
+      };
     }
 
     case UPDATE_PRODUCT_IN_CART: {
       const { id, quantity } = action.data;
-      return state.map((product) => {
+      const newData = state.data.map((product) => {
         if (product.id === id) {
           return {
             ...product,
@@ -19,6 +26,20 @@ export const cartReducer = (state = initialState, action) => {
         }
         return product;
       });
+      return {
+        ...state,
+        data: newData,
+      };
+    }
+
+    case SET_INITIAL_CART: {
+      if (Array.isArray(action.data)) {
+        return {
+          data: [...action.data],
+          isLoaded: true,
+        };
+      }
+      return state;
     }
 
     default:

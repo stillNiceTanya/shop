@@ -4,8 +4,7 @@ import AddToCartContainer from './AddToCartContainer';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-//TODO разбить все на модули. button block вынести, походить подумать где еще что вынести
-//TODO при перезагрузке страницы стор сбрасывается - класть в локал сторадж или куки
+//TODO разбить больше на модули.  походить подумать где еще что вынести
 
 export default function ProductCard({ product }) {
   return (
