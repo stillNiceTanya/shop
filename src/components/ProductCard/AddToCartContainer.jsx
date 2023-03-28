@@ -15,13 +15,14 @@ export default function AddToCartContainer({ product }) {
   const [count, setCount] = useState(1);
 
   const cart = useSelector((state) => state.cart.data);
-  const isAdded = useSelector((state) => state.cart.isAdded);
+  const isLoaded = useSelector((state) => state.cart.isLoaded);
 
   useEffect(() => {
-    if (isAdded) {
-      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    if (!isLoaded) {
+      return;
     }
-  }, [cart, isAdded]);
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  }, [cart, isLoaded]);
 
   useEffect(() => {
     const cartFromLocalStorage = localStorage.getItem(CART_STORAGE_KEY);
