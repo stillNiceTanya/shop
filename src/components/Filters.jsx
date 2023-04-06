@@ -41,12 +41,6 @@ export default function Filters({ products }) {
     dispatch(setFilter({ category: event.target.value }));
   };
 
-  const handleInputSearch = (event) => {
-    dispatch(setFilter({ search: event.target.value }));
-  };
-
-  const debounceSearch = debounce(500, handleInputSearch);
-
   function handleFilerPriceChange(values) {
     dispatch(setFilter({ minPrice: values[0] }));
     dispatch(setFilter({ maxPrice: values[1] }));
@@ -57,7 +51,7 @@ export default function Filters({ products }) {
   return (
     <form className="flex flex-col mr-9 gap-9">
       <div>
-        <InputSearch onChange={debounceSearch} />
+        <InputSearch />
       </div>
 
       <Select onChange={handleFilterCategoryChange} options={allCategories} />
@@ -83,16 +77,6 @@ export default function Filters({ products }) {
           <span className="text-accent-100">Filter</span>
         </div>
       </div>
-
-      <label className="switch">
-        On sale
-        <input type="checkbox" />
-      </label>
-
-      <label className="switch">
-        In stock
-        <input type="checkbox" />
-      </label>
     </form>
   );
 }

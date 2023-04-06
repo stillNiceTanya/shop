@@ -1,10 +1,9 @@
 import React from 'react';
-// import classNames from "classnames";
 
 export default function Item({ item }) {
   return (
-    <div className="flex flex-col w-48 ">
-      <div className="mb-6 flex justify-center items-center w-auto h-48 lg:h-80 lg:w-80">
+    <div className="flex flex-col  ">
+      <div className="mb-6 flex justify-center items-center w-auto h-48 ">
         <img
           src={item.image}
           alt="product img"

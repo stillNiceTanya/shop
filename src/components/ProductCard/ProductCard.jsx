@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function ProductCard({ product }) {
   return (
-    <div className="flex flex-col lg:max-w-484 md:w-1/2">
+    <div className="flex flex-col lg:max-w-1/3 md:w-1/2">
       <span className="mt-10 mb-1 text-l font-normal md:mb-6 lg:leading-9 lg:text-2xl text-ellipsis whitespace-nowrap overflow-hidden">
         {product.title}
       </span>

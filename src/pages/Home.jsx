@@ -32,7 +32,7 @@ export default function Home() {
       </div>
 
       <Items
-        className="lg:gap-x-14 lg:gap-y-20 mobile:gap-x-3.5 mobile:gap-y-7"
+        className="lg:gap-x-14 lg:gap-y-20 mobile:gap-x-3.5 mobile:gap-y-6"
         products={limitProducts}
       />
     </div>

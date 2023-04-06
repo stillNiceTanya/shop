@@ -2,14 +2,17 @@ import React from 'react';
 import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 import { getProductsCategories } from '../redux/actions/getProductsCategories';
 import { getProducts } from '../redux/actions/getProducts';
+import InputSearch from '../components/InputSearch';
 
 import Items from '../components/Items';
 import Filters from '../components/Filters';
 
-//вынести отдельно фильтры, чтобы можно было в моб версии делать фильтр согласно макету в Каталог и Home
+//TODO убрать крестик 'очистить' когда вводишь inputSearch
+//TODO много повторения кода в inputSearch - рефакторить
 
 export default function Catalog() {
   const dispatch = useDispatch();
@@ -56,21 +59,30 @@ export default function Catalog() {
     [isLoaded, products],
   );
 
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 768px)',
+  });
+
   return (
     <>
       <div className="lg:px-24 lg:pt-24 p-4 mobile:p-10">
         <Link to="/">
-          Вернуться на предыдущую страницу {<br />}
-          <span className="text-3xl font-medium lg:hidden">Shop</span>
-          <h2 className="lg:text-3xl lg:font-medium lg:block hidden ">
-            Shop The Latest
+          <h2 className="text-3xl font-medium">
+            {isDesktopOrLaptop ? 'Shop The Latest' : ''}
           </h2>
         </Link>
 
         <div className="md:flex md:items-start lg:pt-10 pt-4">
-          <div className="hidden md:block">
-            <Filters products={products} />
+          <div className="mb-6 md:block">
+            {isDesktopOrLaptop ? (
+              <Filters products={products} className="outline-none" />
+            ) : (
+              <InputSearch />
+            )}
           </div>
+          <h2 className="text-3xl font-medium mb-4">
+            {isDesktopOrLaptop ? '' : 'Shop'}
+          </h2>
           {isEmptyCatalog ? (
             <span className="ml-24 text-xl text-accent-100">
               please,try another search, there is no match

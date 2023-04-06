@@ -1,20 +1,16 @@
-import React from "react";
+import React from 'react';
 
-//если был клик по оптионс - поставить в дефолтный аргумент disabled="disabled"
 export default function Select({ options, onChange, onClick }) {
   return (
     <select
       onClick={onClick}
       onChange={onChange}
-      className="border-solid border-2 border-gray-100 py-4 pl-3"
+      className="border-solid border border-gray-100 py-4 pl-3 rounded "
     >
       <option value="">Shop By</option>
 
       {options.map((el) => (
-        <option
-          value={el}
-          key={el}
-        >
+        <option value={el} key={el}>
           {el}
         </option>
       ))}
