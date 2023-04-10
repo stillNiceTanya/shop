@@ -10,9 +10,7 @@ import InputSearch from '../components/InputSearch';
 
 import Items from '../components/Items';
 import Filters from '../components/Filters';
-
-//TODO убрать крестик 'очистить' когда вводишь inputSearch
-//TODO много повторения кода в inputSearch - рефакторить
+import classNames from 'classnames';
 
 export default function Catalog() {
   const dispatch = useDispatch();
@@ -84,7 +82,11 @@ export default function Catalog() {
             {isDesktopOrLaptop ? '' : 'Shop'}
           </h2>
           {isEmptyCatalog ? (
-            <span className="ml-24 text-xl text-accent-100">
+            <span
+              className={classNames('text-xl text-accent-100', {
+                'ml-24': isDesktopOrLaptop,
+              })}
+            >
               please,try another search, there is no match
             </span>
           ) : (
