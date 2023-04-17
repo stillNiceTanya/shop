@@ -8,7 +8,7 @@ import { debounce } from 'throttle-debounce';
 import { setFilter } from '../redux/actions/setFilter';
 import { resetFilters } from '../redux/actions/resetFilters';
 import Select from './Select';
-import InputSearch from './InputSearch';
+import SearchInput from './SearchInput';
 
 export default function Filters({ products }) {
   const dispatch = useDispatch();
@@ -41,12 +41,6 @@ export default function Filters({ products }) {
     dispatch(setFilter({ category: event.target.value }));
   };
 
-  const handleInputSearch = (event) => {
-    dispatch(setFilter({ search: event.target.value }));
-  };
-
-  const debounceSearch = debounce(500, handleInputSearch);
-
   function handleFilerPriceChange(values) {
     dispatch(setFilter({ minPrice: values[0] }));
     dispatch(setFilter({ maxPrice: values[1] }));
@@ -57,7 +51,7 @@ export default function Filters({ products }) {
   return (
     <form className="flex flex-col mr-9 gap-9">
       <div>
-        <InputSearch onChange={debounceSearch} />
+        <SearchInput />
       </div>
 
       <Select onChange={handleFilterCategoryChange} options={allCategories} />
@@ -76,23 +70,13 @@ export default function Filters({ products }) {
           }}
         />
         <div className="flex justify-between font-normal text-sm">
-          <span className="text-darkGray-100">
+          <span className="text-dark-gray-100">
             Price: ${minPrice || minProductPrice} - $
             {maxPrice || maxProductPrice}
           </span>
           <span className="text-accent-100">Filter</span>
         </div>
       </div>
-
-      <label className="switch">
-        On sale
-        <input type="checkbox" />
-      </label>
-
-      <label className="switch">
-        In stock
-        <input type="checkbox" />
-      </label>
     </form>
   );
 }

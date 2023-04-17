@@ -7,8 +7,9 @@ module.exports = {
     extend: {
       colors: {
         accent: { 100: '#A18A68' },
+        'light-gray': { 100: '#EFEFEF' },
         gray: { 100: '#D8D8D8' },
-        darkGray: { 100: '#707070' },
+        'dark-gray': { 100: '#707070' },
       },
       fontFamily: {
         dmSans: ['DM Sans', 'sans-serif'],

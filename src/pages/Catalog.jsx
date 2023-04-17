@@ -5,11 +5,10 @@ import { Link } from 'react-router-dom';
 
 import { getProductsCategories } from '../redux/actions/getProductsCategories';
 import { getProducts } from '../redux/actions/getProducts';
+import SearchInput from '../components/SearchInput';
 
 import Items from '../components/Items';
 import Filters from '../components/Filters';
-
-//вынести отдельно фильтры, чтобы можно было в моб версии делать фильтр согласно макету в Каталог и Home
 
 export default function Catalog() {
   const dispatch = useDispatch();
@@ -60,19 +59,23 @@ export default function Catalog() {
     <>
       <div className="lg:px-24 lg:pt-24 p-4 mobile:p-10">
         <Link to="/">
-          Вернуться на предыдущую страницу {<br />}
-          <span className="text-3xl font-medium lg:hidden">Shop</span>
-          <h2 className="lg:text-3xl lg:font-medium lg:block hidden ">
+          <h2 className="md:text-3xl md:font-medium md:block hidden">
             Shop The Latest
           </h2>
         </Link>
 
         <div className="md:flex md:items-start lg:pt-10 pt-4">
-          <div className="hidden md:block">
-            <Filters products={products} />
+          <div className="mb-6 md:block">
+            <div className="hidden md:block">
+              <Filters products={products} className="outline-none" />
+            </div>
+            <div className="md:hidden">
+              <SearchInput />
+            </div>
           </div>
+          <h2 className="text-3xl font-medium mb-4 md:hidden">Shop</h2>
           {isEmptyCatalog ? (
-            <span className="ml-24 text-xl text-accent-100">
+            <span className="text-xl text-accent-100 md:ml-24">
               please,try another search, there is no match
             </span>
           ) : (
