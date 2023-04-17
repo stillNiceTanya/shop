@@ -2,7 +2,6 @@ import React from 'react';
 import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
 
 import { getProductsCategories } from '../redux/actions/getProductsCategories';
 import { getProducts } from '../redux/actions/getProducts';
@@ -10,7 +9,6 @@ import SearchInput from '../components/SearchInput';
 
 import Items from '../components/Items';
 import Filters from '../components/Filters';
-import classNames from 'classnames';
 
 export default function Catalog() {
   const dispatch = useDispatch();
@@ -57,10 +55,6 @@ export default function Catalog() {
     [isLoaded, products],
   );
 
-  const isScreenLargerThan768 = useMediaQuery({
-    query: '(min-width: 768px)',
-  });
-
   return (
     <>
       <div className="lg:px-24 lg:pt-24 p-4 mobile:p-10">
@@ -72,11 +66,12 @@ export default function Catalog() {
 
         <div className="md:flex md:items-start lg:pt-10 pt-4">
           <div className="mb-6 md:block">
-            {isScreenLargerThan768 ? (
+            <div className="hidden md:block">
               <Filters products={products} className="outline-none" />
-            ) : (
+            </div>
+            <div className="md:hidden">
               <SearchInput />
-            )}
+            </div>
           </div>
           <h2 className="text-3xl font-medium mb-4 md:hidden">Shop</h2>
           {isEmptyCatalog ? (

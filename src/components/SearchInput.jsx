@@ -1,6 +1,4 @@
 import React from 'react';
-import { useMediaQuery } from 'react-responsive';
-import classNames from 'classnames';
 import { FaSearch } from 'react-icons/fa';
 import { debounce } from 'throttle-debounce';
 import { useDispatch } from 'react-redux';
@@ -8,16 +6,14 @@ import { setFilter } from '../redux/actions/setFilter';
 
 const SearchIcon = () => {
   return (
-    <FaSearch className="absolute left-2 top-1/2 transform -translate-y-1/2 text-dark-gray-100 text-sm md:left-auto md:ml-auto md:top-1/2 md:right-2" />
+    <div className="absolute h-full md:left-auto md:right-2 left-2 flex justify-center items-center">
+      <FaSearch className="text-dark-gray-100 text-sm" />
+    </div>
   );
 };
 
 export default function SearchInput() {
   const dispatch = useDispatch();
-
-  const isScreenLargerThan768 = useMediaQuery({
-    query: '(min-width: 768px)',
-  });
 
   const handleSearchInput = (event) => {
     dispatch(setFilter({ search: event.target.value }));
@@ -33,13 +29,7 @@ export default function SearchInput() {
           onChange={debounceSearch}
           type="text"
           placeholder="Search..."
-          className={classNames(
-            'outline-none appearance-none focus:outline-none',
-            {
-              'bg-light-gray-100 w-full rounded py-1.5 px-7':
-                !isScreenLargerThan768,
-            },
-          )}
+          className="outline-none appearance-none focus:outline-none bg-light-gray-100 md:bg-transparent py-1.5 px-7 md:px-0 w-full rounded"
         />
       </div>
       <div className="md:border-b md:border-solid md:mt-3 md:border-grey-100 md:mt-3"></div>
