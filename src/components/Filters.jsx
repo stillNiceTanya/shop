@@ -8,7 +8,7 @@ import { debounce } from 'throttle-debounce';
 import { setFilter } from '../redux/actions/setFilter';
 import { resetFilters } from '../redux/actions/resetFilters';
 import Select from './Select';
-import InputSearch from './InputSearch';
+import SearchInput from './SearchInput';
 
 export default function Filters({ products }) {
   const dispatch = useDispatch();
@@ -51,7 +51,7 @@ export default function Filters({ products }) {
   return (
     <form className="flex flex-col mr-9 gap-9">
       <div>
-        <InputSearch />
+        <SearchInput />
       </div>
 
       <Select onChange={handleFilterCategoryChange} options={allCategories} />
@@ -70,7 +70,7 @@ export default function Filters({ products }) {
           }}
         />
         <div className="flex justify-between font-normal text-sm">
-          <span className="text-darkGray-100">
+          <span className="text-dark-gray-100">
             Price: ${minPrice || minProductPrice} - $
             {maxPrice || maxProductPrice}
           </span>

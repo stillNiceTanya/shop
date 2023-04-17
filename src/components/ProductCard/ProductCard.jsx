@@ -17,7 +17,7 @@ export default function ProductCard({ product }) {
         ${product.price}
       </span>
 
-      <span className="font-normal leading-7 mb-12 text-base text-darkGray-100 ">
+      <span className="font-normal leading-7 mb-12 text-base text-dark-gray-100 ">
         {product.description}
       </span>
       <div className="lg:flex lg:justify-between">

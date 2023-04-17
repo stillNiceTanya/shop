@@ -77,7 +77,7 @@ export default function AddToCartContainer({ product }) {
   return (
     <div className="flex gap-6 justify-between w-full ">
       <div className="hidden lg:block h-14">
-        <div className="rounded-md bg-lightGray-100 flex justify-center items-center p-3.5">
+        <div className="rounded-md bg-light-gray-100 flex justify-center items-center p-3.5">
           <button
             className={classNames('mr-4', {
               'cursor-not-allowed': count === 1,
@@ -88,7 +88,7 @@ export default function AddToCartContainer({ product }) {
           </button>
           <input
             maxLength="4"
-            className="w-8 text-center bg-lightGray-100"
+            className="w-8 text-center bg-light-gray-100"
             type="text"
             value={count}
             onChange={handleInputChange}

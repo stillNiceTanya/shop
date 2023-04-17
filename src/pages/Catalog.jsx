@@ -6,7 +6,7 @@ import { useMediaQuery } from 'react-responsive';
 
 import { getProductsCategories } from '../redux/actions/getProductsCategories';
 import { getProducts } from '../redux/actions/getProducts';
-import InputSearch from '../components/InputSearch';
+import SearchInput from '../components/SearchInput';
 
 import Items from '../components/Items';
 import Filters from '../components/Filters';
@@ -57,7 +57,7 @@ export default function Catalog() {
     [isLoaded, products],
   );
 
-  const isDesktopOrLaptop = useMediaQuery({
+  const isScreenLargerThan768 = useMediaQuery({
     query: '(min-width: 768px)',
   });
 
@@ -65,28 +65,22 @@ export default function Catalog() {
     <>
       <div className="lg:px-24 lg:pt-24 p-4 mobile:p-10">
         <Link to="/">
-          <h2 className="text-3xl font-medium">
-            {isDesktopOrLaptop ? 'Shop The Latest' : ''}
+          <h2 className="md:text-3xl md:font-medium md:block hidden">
+            Shop The Latest
           </h2>
         </Link>
 
         <div className="md:flex md:items-start lg:pt-10 pt-4">
           <div className="mb-6 md:block">
-            {isDesktopOrLaptop ? (
+            {isScreenLargerThan768 ? (
               <Filters products={products} className="outline-none" />
             ) : (
-              <InputSearch />
+              <SearchInput />
             )}
           </div>
-          <h2 className="text-3xl font-medium mb-4">
-            {isDesktopOrLaptop ? '' : 'Shop'}
-          </h2>
+          <h2 className="text-3xl font-medium mb-4 md:hidden">Shop</h2>
           {isEmptyCatalog ? (
-            <span
-              className={classNames('text-xl text-accent-100', {
-                'ml-24': isDesktopOrLaptop,
-              })}
-            >
+            <span className="text-xl text-accent-100 md:ml-24">
               please,try another search, there is no match
             </span>
           ) : (
