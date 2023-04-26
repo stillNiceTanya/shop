@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
-import { toastConfig } from './constants';
+import ToastMessageContent from '../components/ToastMessageContent';
 
 export default function showInfoMessage(message) {
-  return toast.info(message, toastConfig);
+  return toast.info(<ToastMessageContent message={message} />);
 }

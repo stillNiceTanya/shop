@@ -5,7 +5,7 @@ import NavBar from './NavBar';
 
 export default function Topbar() {
   return (
-    <div className="px-4 lg:px-24 mobile:px-10 pt-2 md:pt-12">
+    <div className="px-4 pt-3 mobile:px-10 smalltablet:px-14 md:pt-12 lg:px-24">
       <div className="flex justify-between">
         <Logo />
         <NavBar />

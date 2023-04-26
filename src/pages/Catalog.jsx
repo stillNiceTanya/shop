@@ -59,7 +59,7 @@ export default function Catalog() {
   return (
     <>
       <Header.Topbar />
-      <div className="lg:px-24 px-4 mobile:px-10 md:mt-12 lg:mt-24">
+      <div className="lg:px-24 px-4 mobile:px-10 smalltablet:px-14 md:mt-12 lg:mt-24">
         <Link to="/">
           <h2 className="md:text-3xl md:font-medium md:block hidden">
             Shop The Latest

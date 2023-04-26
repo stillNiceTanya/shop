@@ -2,10 +2,13 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import { FaCheckCircle } from 'react-icons/fa';
 
 import { getProducts } from '../redux/actions/getProducts';
 import GalleryProduct from '../components/GalleryProduct';
 import ProductCard from '../components/ProductCard/ProductCard';
+import Header from '../components/Header';
 
 export default function Product() {
   useEffect(() => {
@@ -40,25 +43,47 @@ export default function Product() {
   }
 
   return (
-    <div className="p-4 w-screen smalltablet:px-14 md:flex md:justify-between md:py-24 gap-10 h-screen">
-      <div className="lg:flex lg:justify-between lg:gap-10">
-        <div className="lg:flex lg:flex-col lg:gap-8 hidden lg:block">
-          <GalleryProduct imageSrc={product.image} className="h-120 w-120" />
+    <>
+      <Header.Topbar />
 
-          <GalleryProduct imageSrc={product.image} className="h-120 w-120" />
+      <div className="p-4 mobile:px-10 smalltablet:px-14 md:py-12 lg:py-32 lg:px-24 md:grid md:grid-cols-2 md:gap-x-10 lg:gap-x-24 h-screen">
+        <div className="lg:flex lg:gap-10 items-center">
+          <div className="lg:flex lg:flex-col lg:gap-8 hidden lg:block ">
+            <GalleryProduct imageSrc={product.image} className="h-120 w-120" />
 
-          <GalleryProduct imageSrc={product.image} className="h-120 w-120" />
+            <GalleryProduct imageSrc={product.image} className="h-120 w-120" />
 
-          <GalleryProduct imageSrc={product.image} className="h-120 w-120" />
+            <GalleryProduct imageSrc={product.image} className="h-120 w-120" />
+
+            <GalleryProduct imageSrc={product.image} className="h-120 w-120" />
+          </div>
+          <div className="h-80 lg:h-full lg:w-full">
+            <GalleryProduct
+              imageSrc={product.image}
+              className="w-auto h-full block mx-auto pt-10 "
+            />
+          </div>
         </div>
 
-        <GalleryProduct
-          imageSrc={product.image}
-          className="w-auto mx-auto mobile:w-2/3 smalltablet:w-1/2 md:w-2/3 bigtablet:w-2/3 lg:w-full"
-        />
+        <div className="md:col-span-1 lg:col-span-1">
+          <ProductCard product={product} />
+        </div>
       </div>
 
-      <ProductCard product={product} />
-    </div>
+      <ToastContainer
+        position="top-center"
+        pauseOnHover
+        hideProgressBar
+        autoClose={500}
+        limit={1}
+        closeButton={false}
+        toastClassName={() => 'bg-light-gray-100'}
+        className={() =>
+          'w-full top-[101px] mobile:px-10 smalltablet:px-14 lg:px-24 absolute'
+        }
+        bodyClassName={() => 'relative h-16 px-6 flex items-center'}
+        icon={<FaCheckCircle className="text-accent-100 text-xl" />}
+      />
+    </>
   );
 }

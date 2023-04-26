@@ -6,8 +6,8 @@ import { setFilter } from '../redux/actions/setFilter';
 
 const SearchIcon = () => {
   return (
-    <div className="absolute h-full md:left-auto md:right-2 left-2 flex justify-center items-center">
-      <FaSearch className="text-dark-gray-100 text-sm" />
+    <div className="absolute h-full md:left-auto md:right-2 left-2 flex justify-center items-center w-4 h-full">
+      <FaSearch className="text-dark-gray-100 text-sm w-full h-full" />
     </div>
   );
 };
