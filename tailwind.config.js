@@ -13,6 +13,7 @@ module.exports = {
       },
       fontFamily: {
         dmSans: ['DM Sans', 'sans-serif'],
+        'allerta-stencil': ['Allerta Stencil'],
       },
       height: {
         120: '7.5rem',
