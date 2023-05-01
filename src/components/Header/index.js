@@ -1,4 +1,3 @@
-import Topbar from './Topbar';
+import Header from './Header';
 
-const Header = { Topbar };
-export default Header;
+export { Header };

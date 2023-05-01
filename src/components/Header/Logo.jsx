@@ -7,10 +7,10 @@ export default function Logo() {
     <Link
       to="/"
       role="banner"
-      className="font-allerta-stencil font-normal text-2xl md:text-3xl leading-10"
+      className="font-normal text-2xl md:text-3xl leading-10"
     >
-      <span className="text-accent-100">S</span>
-      <span className="text-black">HOPPE</span>
+      <span className="!font-logo-font text-accent-100">S</span>
+      <span className="!font-logo-font text-black">HOPPE</span>
     </Link>
   );
 }

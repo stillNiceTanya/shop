@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { getProductsCategories } from '../redux/actions/getProductsCategories';
 import { getProducts } from '../redux/actions/getProducts';
 import SearchInput from '../components/SearchInput';
-import Header from '../components/Header';
+import { Header } from '../components/Header';
 
 import Items from '../components/Items';
 import Filters from '../components/Filters';
@@ -58,7 +58,7 @@ export default function Catalog() {
 
   return (
     <>
-      <Header.Topbar />
+      <Header />
       <div className="lg:px-24 px-4 mobile:px-10 smalltablet:px-14 md:mt-12 lg:mt-24">
         <Link to="/">
           <h2 className="md:text-3xl md:font-medium md:block hidden">

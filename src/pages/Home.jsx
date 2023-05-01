@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { getLimitProducts } from '../redux/actions/getLimitProducts';
 
 import Items from '../components/Items';
-import Header from '../components/Header';
+import { Header } from '../components/Header';
 import SearchInput from '../components/SearchInput';
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <>
-      <Header.Topbar />
+      <Header />
       {/* <div className="   lg:mt-24"> */}
       <div className="px-4 mobile:px-10 smalltablet:px-14 md:mt-12 lg:mt-24 lg:px-24">
         <div className="pt-4 mb-6 md:hidden">

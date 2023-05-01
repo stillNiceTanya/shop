@@ -8,7 +8,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 import { getProducts } from '../redux/actions/getProducts';
 import GalleryProduct from '../components/GalleryProduct';
 import ProductCard from '../components/ProductCard/ProductCard';
-import Header from '../components/Header';
+import { Header } from '../components/Header';
 
 export default function Product() {
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Product() {
 
   return (
     <>
-      <Header.Topbar />
+      <Header />
 
       <div className="p-4 mobile:px-10 smalltablet:px-14 md:py-12 lg:py-32 lg:px-24 md:grid md:grid-cols-2 md:gap-x-10 lg:gap-x-24 h-screen">
         <div className="lg:flex lg:gap-10 items-center">
