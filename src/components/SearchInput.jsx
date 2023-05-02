@@ -1,10 +1,10 @@
 import React from 'react';
-
-import Icon from './Icon';
-import { FaSearch } from 'react-icons/fa';
 import { debounce } from 'throttle-debounce';
 import { useDispatch } from 'react-redux';
 import { setFilter } from '../redux/actions/setFilter';
+import { Link } from 'react-router-dom';
+
+import SearchIcon from './SearchIcon';
 
 export default function SearchInput() {
   const dispatch = useDispatch();
@@ -18,9 +18,7 @@ export default function SearchInput() {
   return (
     <>
       <div className="flex relative">
-        <Icon className="absolute w-4 h-full md:left-auto md:right-2 left-2">
-          <FaSearch className="text-dark-gray-100 text-sm w-full h-full" />
-        </Icon>
+        <SearchIcon />
 
         <input
           onChange={debounceSearch}
