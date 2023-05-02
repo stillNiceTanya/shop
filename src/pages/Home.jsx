@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { getLimitProducts } from '../redux/actions/getLimitProducts';
 
 import Items from '../components/Items';
+import { Header } from '../components/Header';
+import SearchInput from '../components/SearchInput';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -20,21 +22,28 @@ export default function Home() {
   }
 
   return (
-    <div className="md:pt-16 lg:pl-30 md:pr-6 p-4 mobile:p-10">
-      <div className="flex justify-between self-center mb-10 font-medium">
-        <h2 className="md:text-4xl text-xl">Shop The Latest</h2>
-        <Link
-          to="/catalog"
-          className="text-accent-100 text-sm md:text-xl self-center"
-        >
-          View All
-        </Link>
-      </div>
+    <>
+      <Header />
+      {/* <div className="   lg:mt-24"> */}
+      <div className="px-4 mobile:px-10 smalltablet:px-14 md:mt-12 lg:mt-24 lg:px-24">
+        <div className="pt-4 mb-6 md:hidden">
+          <SearchInput />
+        </div>
+        <div className="flex justify-between self-center mb-10 font-medium">
+          <h2 className="md:text-3xl text-xl">Shop The Latest</h2>
+          <Link
+            to="/catalog"
+            className="text-accent-100 text-sm md:text-xl self-center"
+          >
+            View All
+          </Link>
+        </div>
 
-      <Items
-        className="lg:gap-x-14 lg:gap-y-20 mobile:gap-x-3.5 mobile:gap-y-6"
-        products={limitProducts}
-      />
-    </div>
+        <Items
+          className="lg:gap-x-14 lg:gap-y-20 mobile:gap-x-3.5 mobile:gap-y-6"
+          products={limitProducts}
+        />
+      </div>
+    </>
   );
 }

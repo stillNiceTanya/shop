@@ -49,12 +49,11 @@ export default function AddToCartContainer({ product }) {
       dispatch(updateCart(productData));
 
       helpers.showInfoMessage(
-        `you have successfully added to the cart ${count} items`,
+        `${count} items ${product.title} was added to the cart `,
       );
       return;
     }
     dispatch(addToCart(productData));
-    helpers.showSuccessMessage(`${product.title} was added to the cart`);
   }, [product, count, dispatch, isInCart]);
 
   const handleDecrement = useCallback(() => {
@@ -76,8 +75,8 @@ export default function AddToCartContainer({ product }) {
 
   return (
     <div className="flex gap-6 justify-between w-full ">
-      <div className="hidden lg:block h-14">
-        <div className="rounded-md bg-light-gray-100 flex justify-center items-center p-3.5">
+      <div className="hidden md:block">
+        <div className="rounded-md bg-light-gray-100 flex justify-center items-center md:py-3 lg:py-4 px-3.5">
           <button
             className={classNames('mr-4', {
               'cursor-not-allowed': count === 1,
@@ -100,7 +99,7 @@ export default function AddToCartContainer({ product }) {
       </div>
       <button
         onClick={handleAddToCart}
-        className="border border-black rounded-md w-full"
+        className="border border-black rounded-md w-full text-xs font-medium py-2 md:py-3 lg:py-4 flex items-center justify-center"
       >
         ADD TO CART
       </button>

@@ -1,5 +1,3 @@
-import { ToastContainer } from 'react-toastify';
-
 import AddToCartContainer from './AddToCartContainer';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,8 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function ProductCard({ product }) {
   return (
-    <div className="flex flex-col lg:max-w-1/3 md:w-1/2">
-      <span className="mt-10 mb-1 text-l font-normal md:mb-6 lg:leading-9 lg:text-2xl text-ellipsis whitespace-nowrap overflow-hidden">
+    <div className="flex flex-col">
+      <span className="mt-10 mb-1 text-l font-normal md:mb-6  lg:leading-9 lg:text-2xl text-ellipsis whitespace-nowrap overflow-hidden flex-none">
         {product.title}
       </span>
 
@@ -17,13 +15,12 @@ export default function ProductCard({ product }) {
         ${product.price}
       </span>
 
-      <span className="font-normal leading-7 mb-12 text-base text-dark-gray-100 ">
+      <span className="font-normal leading-7 mb-12 text-base text-dark-gray-100 text-ellipsis overflow-hidden whitespace-normal ">
         {product.description}
       </span>
       <div className="lg:flex lg:justify-between">
         <AddToCartContainer product={product} />
       </div>
-      <ToastContainer />
     </div>
   );
 }

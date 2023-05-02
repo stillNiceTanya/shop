@@ -12,7 +12,7 @@ module.exports = {
         'dark-gray': { 100: '#707070' },
       },
       fontFamily: {
-        dmSans: ['DM Sans', 'sans-serif'],
+        'logo-font': ['Allerta Stencil', 'sans-serif'],
       },
       height: {
         120: '7.5rem',

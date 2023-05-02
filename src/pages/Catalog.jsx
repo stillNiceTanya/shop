@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { getProductsCategories } from '../redux/actions/getProductsCategories';
 import { getProducts } from '../redux/actions/getProducts';
 import SearchInput from '../components/SearchInput';
+import { Header } from '../components/Header';
 
 import Items from '../components/Items';
 import Filters from '../components/Filters';
@@ -57,7 +58,8 @@ export default function Catalog() {
 
   return (
     <>
-      <div className="lg:px-24 lg:pt-24 p-4 mobile:p-10">
+      <Header />
+      <div className="lg:px-24 px-4 mobile:px-10 smalltablet:px-14 md:mt-12 lg:mt-24">
         <Link to="/">
           <h2 className="md:text-3xl md:font-medium md:block hidden">
             Shop The Latest
@@ -73,7 +75,7 @@ export default function Catalog() {
               <SearchInput />
             </div>
           </div>
-          <h2 className="text-3xl font-medium mb-4 md:hidden">Shop</h2>
+          <h2 className="text-xl font-normal mb-4 md:hidden">Shop</h2>
           {isEmptyCatalog ? (
             <span className="text-xl text-accent-100 md:ml-24">
               please,try another search, there is no match
