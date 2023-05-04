@@ -24,7 +24,7 @@ export default function NavBar() {
       <div className="hidden md:block border-l border-solid border-dark-gray-100 h-4 mx-12"></div>
 
       <div className="flex justify-center items-center md:space-x-10">
-        <Link to="error-page">
+        <Link to="/cart">
           <CartIcon isCartEmpty={isCartEmpty} />
         </Link>
 

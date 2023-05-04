@@ -10,6 +10,8 @@ import GalleryProduct from '../components/GalleryProduct';
 import ProductCard from '../components/ProductCard/ProductCard';
 import { Header } from '../components/Header';
 
+//TODO исправить баг - тостКонтейнер появляется только после второго клика
+
 export default function Product() {
   useEffect(() => {
     dispatch(getProducts({}));

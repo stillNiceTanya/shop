@@ -1,13 +1,12 @@
 import React from 'react';
+import classNames from 'classnames';
 
 export default function GalleryProduct({ imageSrc, className }) {
   return (
-    <div className={className}>
-      <img
-        src={imageSrc}
-        alt="product img"
-        className="object-contain w-full h-full block"
-      ></img>
-    </div>
+    <img
+      src={imageSrc}
+      alt="product img"
+      className={classNames(className, 'object-contain w-full h-full')}
+    ></img>
   );
 }
