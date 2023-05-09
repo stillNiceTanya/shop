@@ -1,22 +1,23 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import ProductInBag from '../components/Cart/ProductInBag';
+import { getProducts } from '../redux/actions/getProducts';
+import CartItem from '../components/Cart/CartItem';
 import CartSummary from '../components/Cart/CartSummary/CartSummary';
 import useLocalStorageCart from '../hooks/useLocalStorageCart';
 import { Header } from '../components/Header';
 
 //TODO паддинги для других экранов
-//TODO вынести из ProductCard AddToCartQuantity и другие компоненты
+//TODO вынести из CartItem CartItemQuantityControls и другие компоненты
 
-function ShowEmptyCartMessage() {
+function EmptyCartMessage() {
   return (
     <>
       <div className="flex flex-col justify-center items-center text-xl font-normal">
         <div className="flex flex-col items-center text-dark-gray-100 mb-6">
-          <span>{`Your cart is empty; `}</span>
-          <span>{` back to home and start again`}</span>
+          <span>Your cart is empty;</span>
+          <span>back to home and start again</span>
         </div>
         <Link to="/">
           <span className="text-accent-100">go back to shopping</span>
@@ -27,9 +28,38 @@ function ShowEmptyCartMessage() {
 }
 
 export default function ShoppingCart() {
-  const cart = useSelector((state) => state.cart.data);
-
+  const dispatch = useDispatch();
   useLocalStorageCart();
+
+  useEffect(() => {
+    dispatch(getProducts({}));
+  }, [dispatch]);
+
+  const cart = useSelector((state) => state.cart.data);
+  const isLoaded = useSelector((state) => state.products.isLoaded);
+  const products = useSelector((state) => state.products.data);
+
+  const cartProducts = cart
+    .map((cartProduct) => {
+      const result = products.find((product) => {
+        return cartProduct.id === product.id;
+      });
+      if (!result) {
+        return undefined;
+      }
+
+      return {
+        ...result,
+        ...cartProduct,
+      };
+    })
+    .filter(Boolean);
+
+  if (!isLoaded) {
+    return (
+      <div className="flex justify-center items-center h-screen">loading</div>
+    );
+  }
 
   return (
     <>
@@ -41,13 +71,13 @@ export default function ShoppingCart() {
         </h2>
 
         {cart.length === 0 ? (
-          <ShowEmptyCartMessage />
+          <EmptyCartMessage />
         ) : (
           <div className="grid grid-cols-2">
             <ul>
-              {cart.map((product, index) => (
-                <li key={product.id} className={`${index ? 'mt-10' : ''}`}>
-                  <ProductInBag product={product} />
+              {cartProducts.map((item, index) => (
+                <li key={item.id} className={`${index ? 'mt-10' : ''}`}>
+                  <CartItem product={item} />
                 </li>
               ))}
             </ul>

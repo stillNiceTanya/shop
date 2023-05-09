@@ -4,17 +4,15 @@ import { useCallback } from 'react';
 
 //TODO сбрасывать счетчик после добавления в локал сторадж
 
-export default function AddToCartQuantity({ count, onCountChange }) {
+export default function CartItemQuantityControls({ count, onCountChange }) {
   const handleDecrement = useCallback(() => {
     if (count === 1) return;
 
-    const newCount = count - 1;
-    onCountChange(newCount);
+    onCountChange(count - 1);
   }, [count, onCountChange]);
 
   const handleIncrement = useCallback(() => {
-    const newCount = count + 1;
-    onCountChange(newCount);
+    onCountChange(count + 1);
   }, [count, onCountChange]);
 
   const handleInputChange = (event) => {

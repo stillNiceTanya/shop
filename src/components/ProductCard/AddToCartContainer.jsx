@@ -6,7 +6,7 @@ import { addToCart } from '../../redux/actions/addProductToCart';
 import { updateCart } from '../../redux/actions/addProductToCart';
 import { setInitialCart } from '../../redux/actions/setInitialCart';
 import helpers from '../../helpers';
-import AddToCartQuantity from './AddToCartQuantity';
+import CartItemQuantityControls from './CartItemQuantityControls';
 
 const CART_STORAGE_KEY = 'cart';
 
@@ -64,7 +64,10 @@ export default function AddToCartContainer({ product }) {
   return (
     <div className="flex gap-6 justify-between w-full ">
       <div className="hidden lg:block h-14">
-        <AddToCartQuantity count={count} onCountChange={handleCountChange} />
+        <CartItemQuantityControls
+          count={count}
+          onCountChange={handleCountChange}
+        />
       </div>
 
       <button

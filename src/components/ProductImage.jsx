@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export default function GalleryProduct({ imageSrc, className }) {
+export default function ProductImage({ imageSrc, className }) {
   return (
     <img
       src={imageSrc}

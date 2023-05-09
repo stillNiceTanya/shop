@@ -7,9 +7,9 @@ import CartButton from '../CartButton';
 //TODO сделать паддинги для моб версии
 //TODO вынести отдельно в компоненты выбор локации. Реализовать выбор
 
-const GRID_CLASS = 'grid-cols-2 grid text-base';
+const GRID_CLASS = 'grid-cols-2 grid text-base gap-y-6';
 const INPUT_SEARCH_CONTAINER_CLASS =
-  'col-start-2 uppercase text-dark-gray-100 text-sm border-b border-solid border-grey-100 pb-3';
+  'col-start-2 uppercase text-dark-gray-100 text-sm border-b border-solid border-grey-100 pb-3 outline-none appearance-none focus:outline-none';
 
 export default function CartSummary() {
   return (
@@ -17,30 +17,42 @@ export default function CartSummary() {
       <h3 className="mb-11 text-2xl">Cart totals</h3>
 
       <Row
-        firstCol="subtotal"
-        secondCol={<TotalCartAmount className="text-dark-gray-100" />}
+        title="subtotal"
+        description={<TotalCartAmount className="text-dark-gray-100" />}
       />
 
       <Row
-        firstCol="shipping"
-        secondCol="Shipping costs will be calculated once you have provided address."
+        title="shipping"
+        description="Shipping costs will be calculated once you have provided address."
       />
 
       <div className={GRID_CLASS}>
-        <div className="col-start-2 uppercase mb-6">Calculate shipping</div>
-        <div className={`${INPUT_SEARCH_CONTAINER_CLASS} mb-6`}>
-          Select a country
-        </div>
-        <div className={`${INPUT_SEARCH_CONTAINER_CLASS} mb-6`}>City</div>
-        <div className={INPUT_SEARCH_CONTAINER_CLASS}>Post code / zip</div>
+        <span className="col-start-2 uppercase">Calculate shipping</span>
+        <input
+          placeholder="Select a country"
+          type="text"
+          className={INPUT_SEARCH_CONTAINER_CLASS}
+        ></input>
+        <input
+          placeholder="City"
+          type="text"
+          className={INPUT_SEARCH_CONTAINER_CLASS}
+        ></input>
+        <input
+          type="text"
+          className={INPUT_SEARCH_CONTAINER_CLASS}
+          placeholder="Post code / zip"
+        ></input>
       </div>
 
       <div className={GRID_CLASS}>
-        <CartButton
-          className="col-start-2 mt-6 px-16 mt-10 border-black"
-          textButton="update totals"
-          onClick={() => console.log('функионал позже')}
-        />
+        <div className="col-start-2 mt-6 mt-10 border-black">
+          <CartButton
+            children="update totals"
+            className="px-16"
+            onClick={() => console.log('функионал позже')}
+          />
+        </div>
       </div>
 
       <div className="flex justify-between mt-10 font-bold border-t border-solid border-grey-100 pt-10">
@@ -50,7 +62,7 @@ export default function CartSummary() {
 
       <CartButton
         className="mt-16 bg-black text-white"
-        textButton="proceed to checout"
+        children="proceed to checkout"
         onClick={() => console.log('функионал позже')}
       />
     </div>
