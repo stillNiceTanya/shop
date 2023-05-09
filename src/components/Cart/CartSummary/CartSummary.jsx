@@ -48,10 +48,11 @@ export default function CartSummary() {
       <div className={GRID_CLASS}>
         <div className="col-start-2 mt-6 mt-10 border-black">
           <CartButton
-            children="update totals"
             className="px-16"
             onClick={() => console.log('функионал позже')}
-          />
+          >
+            update totals
+          </CartButton>
         </div>
       </div>
 
@@ -62,9 +63,10 @@ export default function CartSummary() {
 
       <CartButton
         className="mt-16 bg-black text-white"
-        children="proceed to checkout"
         onClick={() => console.log('функионал позже')}
-      />
+      >
+        proceed to checkout
+      </CartButton>
     </div>
   );
 }
