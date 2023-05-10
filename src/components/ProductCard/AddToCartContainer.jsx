@@ -1,11 +1,12 @@
-import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useCallback, useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import classNames from 'classnames';
+import { useState } from 'react';
 
 import { addToCart } from '../../redux/actions/addProductToCart';
 import { updateCart } from '../../redux/actions/addProductToCart';
 import { setInitialCart } from '../../redux/actions/setInitialCart';
 import helpers from '../../helpers';
+import CartItemQuantityControls from './CartItemQuantityControls';
 
 const CART_STORAGE_KEY = 'cart';
 
@@ -56,50 +57,22 @@ export default function AddToCartContainer({ product }) {
     dispatch(addToCart(productData));
   }, [product, count, dispatch, isInCart]);
 
-  const handleDecrement = useCallback(() => {
-    if (count === 1) return;
-
-    setCount((currentCount) => currentCount - 1);
-  }, [count]);
-
-  const handleIncrement = useCallback(() => {
-    setCount((currentCount) => currentCount + 1);
-  }, []);
-
-  const handleInputChange = (event) => {
-    const newValue = parseInt(event.target.value);
-    if (!isNaN(newValue)) {
-      setCount(newValue);
-    }
+  const handleCountChange = (newCount) => {
+    setCount(newCount);
   };
 
   return (
     <div className="flex gap-6 justify-between w-full ">
-      <div className="hidden md:block">
-        <div className="rounded-md bg-light-gray-100 flex justify-center items-center md:py-3 lg:py-4 px-3.5">
-          <button
-            className={classNames('mr-4', {
-              'cursor-not-allowed': count === 1,
-            })}
-            onClick={handleDecrement}
-          >
-            -
-          </button>
-          <input
-            maxLength="4"
-            className="w-8 text-center bg-light-gray-100"
-            type="text"
-            value={count}
-            onChange={handleInputChange}
-          />
-          <button className="cursor-pointer ml-4" onClick={handleIncrement}>
-            +
-          </button>
-        </div>
+      <div className="hidden lg:block h-14">
+        <CartItemQuantityControls
+          count={count}
+          onCountChange={handleCountChange}
+        />
       </div>
+
       <button
         onClick={handleAddToCart}
-        className="border border-black rounded-md w-full text-xs font-medium py-2 md:py-3 lg:py-4 flex items-center justify-center"
+        className="border border-black rounded-md w-full"
       >
         ADD TO CART
       </button>
