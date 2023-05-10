@@ -3,19 +3,19 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import Checkbox from './Checkbox';
-import InputForm from './InputForm';
+import FormInput from './FormInput';
 import ToggleButtons from '../ToggleButtons';
 
-const CART_STORAGE_KEY = 'user_data';
+const USER_DATA = 'user_data';
 
 //TODO сейчас <Checkbox/> никак не подключает логику, просто ставит галочку. Добавить если Checkbox включен - то кладем в локал сторадж, если нет, то данные кладем в сессион сторадж
 
 export default function Form() {
-  const [isSignUp, setSignUp] = useState(false);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleLogin = (event) => {
     event.preventDefault();
 
     const formData = {
@@ -23,7 +23,7 @@ export default function Form() {
       password: password,
     };
 
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(formData));
+    localStorage.setItem(USER_DATA, JSON.stringify(formData));
     window.location.reload();
   };
 
@@ -35,24 +35,26 @@ export default function Form() {
     setPassword(value);
   };
 
-  const handleClick = () => {
-    localStorage.removeItem(CART_STORAGE_KEY);
+  const handleLogout = () => {
+    localStorage.removeItem(USER_DATA);
     window.location.reload();
   };
 
   useEffect(() => {
-    const isUserRegistered = localStorage.getItem(CART_STORAGE_KEY);
+    const isUserRegistered = localStorage.getItem(USER_DATA);
     if (isUserRegistered) {
-      setSignUp(true);
+      setIsUserLoggedIn(true);
     }
   }, []);
 
-  return isSignUp ? (
+  return isUserLoggedIn ? (
     <div className="flex flex-col justify-center items-center h-32">
       <span>you are already signed up</span>
+      <span>if you want to log out of your account,</span>
+
       <span>
-        if you want to log out of your account, click{' '}
-        <button onClick={handleClick} className="text-accent-100">
+        click{' '}
+        <button onClick={handleLogout} className="text-accent-100">
           here
         </button>
       </span>
@@ -61,17 +63,17 @@ export default function Form() {
     <>
       <ToggleButtons />
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleLogin}
         className="flex flex-col items-center text-xl font-normal mt-16 lg:mt-32"
       >
-        <InputForm
+        <FormInput
           className="mb-11"
           placeholder="Email"
           type="email"
           onChange={handleEmailChange}
         />
 
-        <InputForm
+        <FormInput
           className="mb-4"
           placeholder="Password"
           type="password"
