@@ -8,6 +8,8 @@ import { setInitialCart } from '../../redux/actions/setInitialCart';
 import helpers from '../../helpers';
 import CartItemQuantityControls from './CartItemQuantityControls';
 
+//TODO CartItemQuantityControls меньше кнопки ADD TO CART по высоте
+
 const CART_STORAGE_KEY = 'cart';
 
 export default function AddToCartContainer({ product }) {
@@ -63,16 +65,14 @@ export default function AddToCartContainer({ product }) {
 
   return (
     <div className="flex gap-6 justify-between w-full ">
-      <div className="hidden lg:block h-14">
-        <CartItemQuantityControls
-          count={count}
-          onCountChange={handleCountChange}
-        />
-      </div>
+      <CartItemQuantityControls
+        count={count}
+        onCountChange={handleCountChange}
+      />
 
       <button
         onClick={handleAddToCart}
-        className="border border-black rounded-md w-full"
+        className="border border-black rounded-md w-full h-14"
       >
         ADD TO CART
       </button>

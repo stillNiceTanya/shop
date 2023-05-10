@@ -6,6 +6,7 @@ import CartButton from '../CartButton';
 
 //TODO сделать паддинги для моб версии
 //TODO вынести отдельно в компоненты выбор локации. Реализовать выбор
+//TODO SUBTOTAL и TOTAL не отличаются. В макете не очень понятно ценообразование. Придумать что-то
 
 const GRID_CLASS = 'grid-cols-2 grid text-base gap-y-6';
 const INPUT_SEARCH_CONTAINER_CLASS =

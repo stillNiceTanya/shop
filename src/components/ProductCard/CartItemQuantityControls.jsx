@@ -23,7 +23,7 @@ export default function CartItemQuantityControls({ count, onCountChange }) {
   };
 
   return (
-    <div className="hidden lg:block h-14">
+    <div className="hidden bigtablet:block h-14">
       <div className="rounded-md bg-light-gray-100 flex justify-center items-center p-3.5">
         <button
           className={classNames('mr-4', {

@@ -1,17 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { getProducts } from '../redux/actions/getProducts';
+import { setInitialCart } from '../redux/actions/setInitialCart';
+import { Header } from '../components/Header';
 import CartItem from '../components/Cart/CartItem';
 import CartSummary from '../components/Cart/CartSummary/CartSummary';
 import useLocalStorageCart from '../hooks/useLocalStorageCart';
-import { Header } from '../components/Header';
 
 //TODO паддинги для других экранов
 //TODO вынести из CartItem CartItemQuantityControls и другие компоненты
 
-function EmptyCartMessage() {
+const CART_STORAGE_KEY = 'cart';
+
+const EmptyCartMessage = () => {
   return (
     <>
       <div className="flex flex-col justify-center items-center text-xl font-normal">
@@ -25,19 +28,19 @@ function EmptyCartMessage() {
       </div>
     </>
   );
-}
+};
 
 export default function ShoppingCart() {
   const dispatch = useDispatch();
   useLocalStorageCart();
 
-  useEffect(() => {
-    dispatch(getProducts({}));
-  }, [dispatch]);
-
   const cart = useSelector((state) => state.cart.data);
   const isLoaded = useSelector((state) => state.products.isLoaded);
   const products = useSelector((state) => state.products.data);
+
+  useEffect(() => {
+    dispatch(getProducts({}));
+  }, []);
 
   const cartProducts = cart
     .map((cartProduct) => {
@@ -54,6 +57,39 @@ export default function ShoppingCart() {
       };
     })
     .filter(Boolean);
+
+  const handleRemoveItem = useCallback(
+    (id) => {
+      const newCart = cart.filter((cartItem) => cartItem.id !== id);
+      dispatch(setInitialCart(newCart));
+
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(newCart));
+    },
+    [cart, dispatch],
+  );
+
+  const handleUpdateQuantity = useCallback(
+    (newCount, id) => {
+      const updatedCartProducts = cartProducts.map((cartProduct) => {
+        if (cartProduct.id === id) {
+          return {
+            ...cartProduct,
+            quantity: newCount,
+          };
+        }
+
+        return cartProduct;
+      });
+
+      dispatch(setInitialCart(updatedCartProducts));
+
+      localStorage.setItem(
+        CART_STORAGE_KEY,
+        JSON.stringify(updatedCartProducts),
+      );
+    },
+    [cartProducts, dispatch],
+  );
 
   if (!isLoaded) {
     return (
@@ -77,7 +113,11 @@ export default function ShoppingCart() {
             <ul>
               {cartProducts.map((item, index) => (
                 <li key={item.id} className={`${index ? 'mt-10' : ''}`}>
-                  <CartItem product={item} />
+                  <CartItem
+                    onCountChange={handleUpdateQuantity}
+                    product={item}
+                    onRemove={() => handleRemoveItem(item.id)}
+                  />
                 </li>
               ))}
             </ul>

@@ -76,7 +76,7 @@ export default function Product() {
         position="top-center"
         pauseOnHover
         hideProgressBar
-        autoClose={500}
+        autoClose={2000}
         limit={1}
         closeButton={false}
         toastClassName={() => 'bg-light-gray-100'}
