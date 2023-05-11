@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import Checkbox from './Checkbox';
 import FormInput from './FormInput';
-import ToggleButtons from '../ToggleButtons';
+import Toggle from '../Toggle';
 
 const USER_DATA = 'user_data';
 
@@ -27,12 +27,12 @@ export default function Form() {
     window.location.reload();
   };
 
-  const handleEmailChange = (value) => {
-    setEmail(value);
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   };
 
-  const handlePasswordChange = (value) => {
-    setPassword(value);
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
   };
 
   const handleLogout = () => {
@@ -61,12 +61,13 @@ export default function Form() {
     </div>
   ) : (
     <>
-      <ToggleButtons />
+      <Toggle />
       <form
         onSubmit={handleLogin}
         className="flex flex-col items-center text-xl font-normal mt-16 lg:mt-32"
       >
         <FormInput
+          value={email}
           className="mb-11"
           placeholder="Email"
           type="email"
@@ -74,6 +75,7 @@ export default function Form() {
         />
 
         <FormInput
+          value={password}
           className="mb-4"
           placeholder="Password"
           type="password"
