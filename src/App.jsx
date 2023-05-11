@@ -6,6 +6,7 @@ import ErrorPage from './pages/ErrorPage';
 import Product from './pages/Product';
 import ShoppingCart from './pages/ShoppingCart';
 import UserAccount from './pages/UserAccount';
+import ShoppingCart from './pages/ShoppingCart';
 import './fonts/defaultFont.css';
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/product/:id" element={<Product />} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/account" element={<UserAccount />} />
+        <Route path="/cart" element={<ShoppingCart />} />
       </Routes>
     </>
   );
