@@ -1,8 +1,7 @@
-import { useCallback, useMemo, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
-import { addToCart } from '../../redux/actions/addProductToCart';
 import { updateCart } from '../../redux/actions/addProductToCart';
 import { setInitialCart } from '../../redux/actions/setInitialCart';
 import helpers from '../../helpers';
@@ -33,11 +32,6 @@ export default function AddToCartContainer({ product }) {
     dispatch(setInitialCart(initialCart));
   }, [dispatch]);
 
-  const isInCart = useMemo(
-    () => cart.some((el) => el.id === product.id),
-    [cart, product],
-  );
-
   const handleAddToCart = useCallback(() => {
     const productData = {
       id: product.id,
@@ -46,16 +40,13 @@ export default function AddToCartContainer({ product }) {
       name: product.title,
     };
 
-    if (isInCart) {
-      dispatch(updateCart(productData));
+    dispatch(updateCart(productData));
 
-      helpers.showInfoMessage(
-        `${count} items ${product.title} was added to the cart `,
-      );
-      return;
-    }
-    dispatch(addToCart(productData));
-  }, [product, count, dispatch, isInCart]);
+    helpers.showInfoMessage(
+      `${count} items ${product.title} was added to the cart `,
+    );
+    return;
+  }, [product, count, dispatch]);
 
   const handleCountChange = (newCount) => {
     setCount(newCount);

@@ -29,7 +29,7 @@ export default function NavBar() {
         </Link>
 
         <div className="hidden md:block lg:w-6">
-          <Link to="account">
+          <Link to="/account">
             <UserIcon />
           </Link>
         </div>
