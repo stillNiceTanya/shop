@@ -1,9 +1,9 @@
-import { useCallback, useMemo, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
-import { addToCart } from '../../redux/actions/addProductToCart';
 import { updateCart } from '../../redux/actions/addProductToCart';
+import { addToCart } from '../../redux/actions/addProductToCart';
 import { setInitialCart } from '../../redux/actions/setInitialCart';
 import helpers from '../../helpers';
 import CartItemQuantityControls from './CartItemQuantityControls';
@@ -20,6 +20,11 @@ export default function AddToCartContainer({ product }) {
   const cart = useSelector((state) => state.cart.data);
   const isLoaded = useSelector((state) => state.cart.isLoaded);
 
+  const isInCart = useMemo(
+    () => cart.some((el) => el.id === product.id),
+    [cart, product],
+  );
+
   useEffect(() => {
     if (!isLoaded) {
       return;
@@ -35,11 +40,6 @@ export default function AddToCartContainer({ product }) {
     dispatch(setInitialCart(initialCart));
   }, [dispatch]);
 
-  const isInCart = useMemo(
-    () => cart.some((el) => el.id === product.id),
-    [cart, product],
-  );
-
   const handleAddToCart = useCallback(() => {
     const productData = {
       id: product.id,
@@ -48,15 +48,13 @@ export default function AddToCartContainer({ product }) {
       name: product.title,
     };
 
-    if (isInCart) {
-      dispatch(updateCart(productData));
+    isInCart
+      ? dispatch(updateCart(productData))
+      : dispatch(addToCart(productData));
 
-      helpers.showInfoMessage(
-        `${count} items ${product.title} was added to the cart `,
-      );
-      return;
-    }
-    dispatch(addToCart(productData));
+    helpers.showInfoMessage(
+      `${count} items ${product.title} was added to the cart `,
+    );
   }, [product, count, dispatch, isInCart]);
 
   const handleCountChange = (newCount) => {
