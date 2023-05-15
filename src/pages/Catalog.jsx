@@ -7,7 +7,6 @@ import { getProductsCategories } from '../redux/actions/getProductsCategories';
 import { getProducts } from '../redux/actions/getProducts';
 import SearchInput from '../components/SearchInput';
 import { Header } from '../components/Header';
-
 import Items from '../components/Items';
 import Filters from '../components/Filters';
 

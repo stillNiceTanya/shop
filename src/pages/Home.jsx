@@ -18,13 +18,17 @@ export default function Home() {
   const isLoaded = useSelector((state) => state.limitProducts.isLoaded);
 
   if (!isLoaded) {
-    return <div>loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        loading...
+      </div>
+    );
   }
 
   return (
     <>
       <Header />
-      {/* <div className="   lg:mt-24"> */}
+
       <div className="px-4 mobile:px-10 smalltablet:px-14 md:mt-12 lg:mt-24 lg:px-24">
         <div className="pt-4 mb-6 md:hidden">
           <SearchInput />

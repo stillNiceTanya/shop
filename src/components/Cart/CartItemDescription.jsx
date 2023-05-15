@@ -2,6 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 
 export default function CartItemDescription({ product, className }) {
+  //TODO исправить product.name - сейчас задана строга ширина, если нет - то контейнер едет
+
   return (
     <div className={classNames('font-normal w-32 lg:w-44', className)}>
       <div className="text-sm md:mb-6 lg:text-xl overflow-hidden overflow-ellipsis whitespace-nowrap">

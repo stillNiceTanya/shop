@@ -3169,6 +3169,11 @@ video {
             column-gap: 2.5rem;
   }
 
+  .md\:gap-x-2 {
+    -webkit-column-gap: 0.5rem;
+            column-gap: 0.5rem;
+  }
+
   .md\:space-x-10 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-x-reverse: 0;
     margin-right: calc(2.5rem * var(--tw-space-x-reverse));
@@ -3347,6 +3352,11 @@ video {
   .lg\:gap-x-24 {
     -webkit-column-gap: 6rem;
             column-gap: 6rem;
+  }
+
+  .lg\:gap-x-4 {
+    -webkit-column-gap: 1rem;
+            column-gap: 1rem;
   }
 
   .lg\:space-x-16 > :not([hidden]) ~ :not([hidden]) {
