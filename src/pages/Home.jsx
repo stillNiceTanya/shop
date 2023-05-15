@@ -6,10 +6,8 @@ import { getLimitProducts } from '../redux/actions/getLimitProducts';
 import Items from '../components/Items';
 import { Header } from '../components/Header';
 import SearchInput from '../components/SearchInput';
-import useLocalStorageCart from '../hooks/useLocalStorageCart';
 
 export default function Home() {
-  useLocalStorageCart();
   const dispatch = useDispatch();
 
   useEffect(() => {

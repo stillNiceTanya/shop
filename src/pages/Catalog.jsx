@@ -9,12 +9,9 @@ import SearchInput from '../components/SearchInput';
 import { Header } from '../components/Header';
 import Items from '../components/Items';
 import Filters from '../components/Filters';
-import useLocalStorageCart from '../hooks/useLocalStorageCart';
 
 export default function Catalog() {
   const dispatch = useDispatch();
-
-  useLocalStorageCart();
 
   const minPrice = useSelector((state) => state.filters.minPrice);
   const maxPrice = useSelector((state) => state.filters.maxPrice);
