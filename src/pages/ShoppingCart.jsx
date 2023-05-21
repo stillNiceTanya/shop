@@ -40,7 +40,7 @@ export default function ShoppingCart() {
 
   useEffect(() => {
     dispatch(getProducts({}));
-  }, []);
+  }, [dispatch]);
 
   const cartProducts = cart
     .map((cartProduct) => {

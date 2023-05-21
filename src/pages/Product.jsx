@@ -13,13 +13,13 @@ import { Header } from '../components/Header';
 //TODO исправить баг - тостКонтейнер появляется только после второго клика
 
 export default function Product() {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getProducts({}));
-  }, []);
+  }, [dispatch]);
 
   const { id } = useParams();
-
-  const dispatch = useDispatch();
 
   const isLoaded = useSelector((state) => state.products.isLoaded);
 

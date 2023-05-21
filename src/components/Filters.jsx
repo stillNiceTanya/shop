@@ -15,7 +15,7 @@ export default function Filters({ products }) {
 
   useEffect(() => {
     return () => dispatch(resetFilters());
-  }, []);
+  }, [dispatch]);
 
   const allCategories = useSelector((state) => state.allCategories);
   const prices = useSelector((state) =>

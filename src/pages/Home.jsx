@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getLimitProducts({ limit: 6 }));
-  }, []);
+  }, [dispatch]);
 
   const limitProducts = useSelector((state) => state.limitProducts.data);
   const isLoaded = useSelector((state) => state.limitProducts.isLoaded);

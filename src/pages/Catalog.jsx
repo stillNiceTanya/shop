@@ -46,7 +46,7 @@ export default function Catalog() {
   useEffect(() => {
     dispatch(getProductsCategories());
     dispatch(getProducts({}));
-  }, []);
+  }, [dispatch]);
 
   const isLoaded = useSelector((state) => state.products.isLoaded);
 

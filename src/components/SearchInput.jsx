@@ -2,7 +2,6 @@ import React from 'react';
 import { debounce } from 'throttle-debounce';
 import { useDispatch } from 'react-redux';
 import { setFilter } from '../redux/actions/setFilter';
-import { Link } from 'react-router-dom';
 
 import SearchIcon from './SearchIcon';
 
