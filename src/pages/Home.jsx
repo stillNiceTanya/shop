@@ -34,10 +34,10 @@ export default function Home() {
           <SearchInput />
         </div>
         <div className="flex justify-between self-center mb-10 font-medium">
-          <h2 className="md:text-3xl text-xl">Shop The Latest</h2>
+          <h2 className="md:text-xl text-m">Here are latest 6 items</h2>
           <Link
             to="/catalog"
-            className="text-accent-100 text-sm md:text-xl self-center"
+            className="text-accent-100 text-sm md:text-3xl self-center"
           >
             View All
           </Link>

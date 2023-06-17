@@ -12,9 +12,7 @@ export default function FormInput({
   value,
 }) {
   const handleChange = (event) => {
-    const value = event.target.value;
-
-    onChange(value);
+    onChange(event.target.value);
   };
 
   return (
