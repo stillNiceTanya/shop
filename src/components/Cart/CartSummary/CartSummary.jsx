@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import TotalCartAmount from './TotalCartAmount';
 import Row from './Row';
@@ -7,12 +7,24 @@ import CartButton from '../CartButton';
 //TODO сделать паддинги для моб версии
 //TODO вынести отдельно в компоненты выбор локации. Реализовать выбор
 //TODO SUBTOTAL и TOTAL не отличаются. В макете не очень понятно ценообразование. Придумать что-то
+//TODO пока поставлена заглушка, при нажатии на подсчет SUBTOTAL и TOTAL - добавить реальный функционал, убрать useState
 
 const GRID_CLASS = 'grid-cols-2 grid text-base gap-y-6';
 const INPUT_SEARCH_CONTAINER_CLASS =
   'col-start-2 uppercase text-dark-gray-100 text-sm border-b border-solid border-grey-100 pb-3 outline-none appearance-none focus:outline-none';
 
 export default function CartSummary() {
+  const [isCountAmontClicked, setIsCountAmontClicked] = useState(false);
+  const [isCountClicked, setIsCountClicked] = useState(false);
+
+  const handleAmountClicked = () => {
+    setIsCountAmontClicked(true);
+  };
+
+  const handleClicked = () => {
+    setIsCountClicked(true);
+  };
+
   return (
     <div className="font-normal md:py-10 md:px-8">
       <h3 className="mb-11 text-2xl">Cart totals</h3>
@@ -48,12 +60,22 @@ export default function CartSummary() {
 
       <div className={GRID_CLASS}>
         <div className="col-start-2 mt-6 mt-10 border-black">
-          <CartButton
-            className="px-16"
-            onClick={() => console.log('функионал позже')}
-          >
-            update totals
-          </CartButton>
+          {isCountClicked ? (
+            <p>
+              Sorry, this functionality is currently unavailable. It will be
+              implemented for recalibration in the future. Thank you for your
+              understanding!
+              {setTimeout(() => {
+                window.location.reload();
+              }, 5000)}
+            </p>
+          ) : (
+            <p>
+              <CartButton className="px-16" onClick={handleClicked}>
+                update totals
+              </CartButton>
+            </p>
+          )}
         </div>
       </div>
 
@@ -61,13 +83,25 @@ export default function CartSummary() {
         <span className="uppercase">total</span>
         <TotalCartAmount />
       </div>
-
-      <CartButton
-        className="mt-16 bg-black text-white"
-        onClick={() => console.log('функионал позже')}
-      >
-        proceed to checkout
-      </CartButton>
+      {isCountAmontClicked ? (
+        <p>
+          Sorry, this functionality is currently unavailable. It will be
+          implemented for recalibration in the future. Thank you for your
+          understanding!
+          {setTimeout(() => {
+            window.location.reload();
+          }, 5000)}
+        </p>
+      ) : (
+        <p>
+          <CartButton
+            className="mt-16 bg-black text-white"
+            onClick={handleAmountClicked}
+          >
+            proceed to checkout
+          </CartButton>
+        </p>
+      )}
     </div>
   );
 }

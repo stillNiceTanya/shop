@@ -16,9 +16,9 @@ export default function NavBar() {
   return (
     <div className="flex items-center">
       <div className="hidden md:block space-x-12 lg:space-x-16 font-medium text-base leading-6">
-        <Link to="error-page">Shop</Link>
-        <Link to="error-page">Blog</Link>
-        <Link to="error-page">Our Story</Link>
+        <Link to="/catalog">Catalog</Link>
+        <Link to="/no-content-page">Blog</Link>
+        <Link to="/no-content-page">Our Story</Link>
       </div>
 
       <div className="hidden md:block border-l border-solid border-dark-gray-100 h-4 mx-12"></div>

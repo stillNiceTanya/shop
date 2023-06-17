@@ -2,18 +2,38 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-import Checkbox from './Checkbox';
+// import Checkbox from './Checkbox';
 import FormInput from './FormInput';
 import Toggle from '../Toggle';
 
-const USER_DATA = 'user_data';
+const USER_DATA_LOCAL_STORAGE = 'user_data';
+// const USER_DATA_SESSION_STORAGE = 'user_data_session';
 
 //TODO сейчас <Checkbox/> никак не подключает логику, просто ставит галочку. Добавить если Checkbox включен - то кладем в локал сторадж, если нет, то данные кладем в сессион сторадж
+//TODO чекбокс и относящиеся к нему элементы отключены, нужно дописать логику на него
 
 export default function Form() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  //   const [rememberUserData, setRememberUserData] = useState(false);
+
+  //   const handleCheckboxChange = (event) => {
+  //     setRememberUserData(event.target.checked);
+  //   };
+
+  const handleEmailChange = (value) => {
+    setEmail(value);
+  };
+
+  const handlePasswordChange = (value) => {
+    setPassword(value);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem(USER_DATA_LOCAL_STORAGE);
+    window.location.reload();
+  };
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -23,25 +43,20 @@ export default function Form() {
       password: password,
     };
 
-    localStorage.setItem(USER_DATA, JSON.stringify(formData));
-    window.location.reload();
-  };
+    // if (rememberUserData) {
+    //   sessionStorage.setItem(
+    //     USER_DATA_SESSION_STORAGE,
+    //     JSON.stringify(formData),
+    //   );
+    // } else {
+    localStorage.setItem(USER_DATA_LOCAL_STORAGE, JSON.stringify(formData));
+    // }
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem(USER_DATA);
     window.location.reload();
   };
 
   useEffect(() => {
-    const isUserRegistered = localStorage.getItem(USER_DATA);
+    const isUserRegistered = localStorage.getItem(USER_DATA_LOCAL_STORAGE);
     if (isUserRegistered) {
       setIsUserLoggedIn(true);
     }
@@ -52,11 +67,21 @@ export default function Form() {
       <span>you are already signed up</span>
       <span>if you want to log out of your account,</span>
 
-      <span>
+      <span className="mb-4">
         click{' '}
         <button onClick={handleLogout} className="text-accent-100">
           here
         </button>
+      </span>
+
+      <span>if you want to start shopping,</span>
+
+      <span>
+        click{' '}
+        <Link to="/">
+          <button className="text-accent-100">here</button>
+        </Link>
+        ;
       </span>
     </div>
   ) : (
@@ -82,9 +107,12 @@ export default function Form() {
           onChange={handlePasswordChange}
         />
 
-        <div className="w-full mb-16">
-          <Checkbox />
-        </div>
+        {/* <div className="w-full mb-16">
+          <Checkbox
+            isChecked={rememberUserData}
+            onCheckboxChange={handleCheckboxChange}
+          />
+        </div> */}
 
         <button
           className="w-full uppercase bg-black text-white flex justify-center items-center rounded-md hover:shadow-xl transition-shadow duration-300 py-4"
