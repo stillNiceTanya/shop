@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/shop/static/css/main.32c141eb.css",
+    "main.js": "/shop/static/js/main.92171531.js",
+    "static/media/allerta-stencil-all-400-normal.woff": "/shop/static/media/allerta-stencil-all-400-normal.3b11ffa3ee81297ddc8a.woff",
+    "static/media/allerta-stencil-latin-400-normal.woff2": "/shop/static/media/allerta-stencil-latin-400-normal.05c75ac75636e158b959.woff2",
+    "index.html": "/shop/index.html",
+    "main.32c141eb.css.map": "/shop/static/css/main.32c141eb.css.map",
+    "main.92171531.js.map": "/shop/static/js/main.92171531.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.32c141eb.css",
+    "static/js/main.92171531.js"
+  ]
+}
