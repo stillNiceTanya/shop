@@ -62,7 +62,7 @@ export default function CartSummary() {
         <div className="col-start-2 mt-6 mt-10 border-black">
           {isCountClicked ? (
             <p>
-              Sorry, this functionality is currently unavailable. It will be
+              Sorry, this functionality is unavailable for now. It will be
               implemented for recalibration in the future. Thank you for your
               understanding!
               {setTimeout(() => {
