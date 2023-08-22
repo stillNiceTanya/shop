@@ -29,7 +29,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "shop -d build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "tailwind": "npx tailwindcss -i ./src/input.css -o ./public/index.css --watch",
     "build": "react-scripts build",
