@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/shop/static/css/main.32c141eb.css",
-    "main.js": "/shop/static/js/main.92171531.js",
-    "static/media/allerta-stencil-all-400-normal.woff": "/shop/static/media/allerta-stencil-all-400-normal.3b11ffa3ee81297ddc8a.woff",
-    "static/media/allerta-stencil-latin-400-normal.woff2": "/shop/static/media/allerta-stencil-latin-400-normal.05c75ac75636e158b959.woff2",
-    "index.html": "/shop/index.html",
-    "main.32c141eb.css.map": "/shop/static/css/main.32c141eb.css.map",
-    "main.92171531.js.map": "/shop/static/js/main.92171531.js.map"
+    "main.css": "/react-gh-pages/static/css/main.d4fd314a.css",
+    "main.js": "/react-gh-pages/static/js/main.c209c900.js",
+    "static/media/allerta-stencil-all-400-normal.woff": "/react-gh-pages/static/media/allerta-stencil-all-400-normal.3b11ffa3ee81297ddc8a.woff",
+    "static/media/allerta-stencil-latin-400-normal.woff2": "/react-gh-pages/static/media/allerta-stencil-latin-400-normal.05c75ac75636e158b959.woff2",
+    "index.html": "/react-gh-pages/index.html",
+    "main.d4fd314a.css.map": "/react-gh-pages/static/css/main.d4fd314a.css.map",
+    "main.c209c900.js.map": "/react-gh-pages/static/js/main.c209c900.js.map"
   },
   "entrypoints": [
-    "static/css/main.32c141eb.css",
-    "static/js/main.92171531.js"
+    "static/css/main.d4fd314a.css",
+    "static/js/main.c209c900.js"
   ]
 }
