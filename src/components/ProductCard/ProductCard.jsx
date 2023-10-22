@@ -2,7 +2,7 @@ import AddToCartContainer from './AddToCartContainer';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-//TODO разбить больше на модули.  походить подумать где еще что вынести
+//TODO разбить больше на модули.
 
 export default function ProductCard({ product }) {
   return (
