@@ -8,8 +8,6 @@ import { setInitialCart } from '../../redux/actions/setInitialCart';
 import helpers from '../../helpers';
 import CartItemQuantityControls from './CartItemQuantityControls';
 
-//TODO CartItemQuantityControls меньше кнопки ADD TO CART по высоте
-
 const CART_STORAGE_KEY = 'cart';
 
 export default function AddToCartContainer({ product }) {
